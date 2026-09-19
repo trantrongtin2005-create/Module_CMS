@@ -21,3 +21,7 @@ rad.json
 *.flf
 #Test results file
 TestResults.xml
+
+# WordPress uploads (media assets)
+wordpress/wp-content/uploads/*
+!wordpress/wp-content/uploads/index.php
