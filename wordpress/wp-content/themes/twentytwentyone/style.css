@@ -6120,25 +6120,69 @@ input[type="submit"].search-submit:hover {
 .cms-news-card {
 	display: flex !important;
 	flex-direction: row !important;
-	align-items: center !important; /* Vertically center left and right blocks together */
+	align-items: center !important; /* Vertically align all 3 columns */
 	background-color: #ffffff !important;
 	border: 1px solid #e1e6eb !important;
 	border-radius: 2px !important;
-	padding: 22px 26px !important;
-	margin-bottom: 18px !important;
+	padding: 16px 20px !important;
+	margin-bottom: 20px !important;
 	margin-top: 0 !important;
 	gap: 0 !important;
 	width: 100% !important;
 	max-width: 100% !important;
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02) !important;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
+	overflow: hidden !important;
+	box-sizing: border-box !important;
 }
 
 .cms-news-card:hover {
 	border-color: #cbd5e1 !important;
-	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05) !important;
+	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06) !important;
 }
 
-/* Left Date Box */
+/* Column 1: Featured Image / Thumbnail Container */
+.cms-news-thumb {
+	width: 240px !important;
+	min-width: 240px !important;
+	height: 140px !important;
+	flex-shrink: 0 !important;
+	overflow: hidden !important;
+	border-radius: 2px !important;
+	margin-right: 18px !important;
+	background-color: #f1f5f9 !important;
+	position: relative !important;
+}
+
+.cms-news-thumb a {
+	display: block !important;
+	width: 100% !important;
+	height: 100% !important;
+}
+
+.cms-news-thumb img {
+	width: 100% !important;
+	height: 100% !important;
+	max-width: 100% !important;
+	object-fit: cover !important;
+	display: block !important;
+	transition: transform 0.3s ease !important;
+}
+
+.cms-news-card:hover .cms-news-thumb img {
+	transform: scale(1.04) !important;
+}
+
+.cms-news-placeholder-box {
+	width: 100% !important;
+	height: 100% !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	background-color: #f1f5f9 !important;
+	border: 1px dashed #cbd5e1 !important;
+}
+
+/* Column 2: Date Box */
 .cms-news-date {
 	display: flex !important;
 	flex-direction: column !important;
@@ -6149,8 +6193,7 @@ input[type="submit"].search-submit:hover {
 	text-align: center !important;
 	user-select: none !important;
 	flex-shrink: 0 !important;
-	padding-top: 0 !important;
-	padding-right: 22px !important;
+	padding-right: 18px !important;
 }
 
 .cms-news-day {
@@ -6174,12 +6217,12 @@ input[type="submit"].search-submit:hover {
 	letter-spacing: 0.5px !important;
 }
 
-/* Right Content Box with Vertical Separator Line */
+/* Column 3: Content Body with Vertical Left Separator Line */
 .cms-news-body {
 	flex: 1 !important;
 	min-width: 0 !important;
-	padding-left: 22px !important;
-	border-left: 1px solid #cccccc !important; /* Vertical Line Separator */
+	padding-left: 20px !important;
+	border-left: 1px solid #d1d5db !important; /* Vertical Line Separator */
 	display: flex !important;
 	flex-direction: column !important;
 	justify-content: center !important;
@@ -6188,7 +6231,7 @@ input[type="submit"].search-submit:hover {
 }
 
 .cms-news-title {
-	margin: 0 0 6px 0 !important;
+	margin: 0 0 8px 0 !important;
 	padding: 0 !important;
 	font-size: 16px !important;
 	font-weight: 700 !important;
@@ -6224,11 +6267,18 @@ input[type="submit"].search-submit:hover {
 	font-weight: 400 !important;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
 	.cms-news-card {
 		flex-direction: column !important;
-		gap: 12px !important;
+		gap: 14px !important;
 		padding: 16px !important;
+	}
+	.cms-news-thumb {
+		width: 100% !important;
+		min-width: 100% !important;
+		max-width: 100% !important;
+		height: 180px !important;
+		margin-right: 0 !important;
 	}
 	.cms-news-date {
 		min-width: auto !important;
@@ -6245,6 +6295,7 @@ input[type="submit"].search-submit:hover {
 		border-top: 1px solid #cccccc !important;
 		padding-left: 0 !important;
 		padding-top: 12px !important;
+		width: 100% !important;
 	}
 	.cms-news-day {
 		font-size: 32px !important;
