@@ -67,13 +67,19 @@ get_header(); ?>
 	</div>
 
 	<aside class="module11-home-comments" aria-labelledby="module11-home-comments-title">
-		<h2 id="module11-home-comments-title">Comments</h2>
+		<div class="module11-comments-heading">
+			<h2 id="module11-home-comments-title">Comments</h2>
+			<span class="module11-comments-more" aria-hidden="true">&#8942;</span>
+		</div>
 		<?php
 		$module11_home_comments = get_comments(
 			array(
-				'number'      => 6,
+				'number'      => 0,
 				'status'      => 'approve',
+				'post_type'   => 'post',
 				'post_status' => 'publish',
+				'orderby'     => 'comment_date_gmt',
+				'order'       => 'DESC',
 			)
 		);
 		?>
@@ -81,8 +87,7 @@ get_header(); ?>
 			<ul>
 				<?php foreach ( $module11_home_comments as $module11_home_comment ) : ?>
 					<li>
-						<strong><?php echo esc_html( $module11_home_comment->comment_author ); ?></strong>
-						<a href="<?php echo esc_url( get_comment_link( $module11_home_comment ) ); ?>"><?php echo esc_html( get_the_title( $module11_home_comment->comment_post_ID ) ); ?></a>
+						<a href="<?php echo esc_url( get_comment_link( $module11_home_comment ) ); ?>"><?php echo esc_html( wp_strip_all_tags( $module11_home_comment->comment_content ) ); ?></a>
 					</li>
 				<?php endforeach; ?>
 			</ul>
