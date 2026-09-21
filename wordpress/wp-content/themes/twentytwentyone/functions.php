@@ -32,7 +32,6 @@ if ( ! function_exists( 'twenty_twenty_one_setup' ) ) {
 	 * @return void
 	 */
 	function twenty_twenty_one_setup() {
-
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
 
@@ -71,8 +70,12 @@ if ( ! function_exists( 'twenty_twenty_one_setup' ) ) {
 
 		register_nav_menus(
 			array(
-				'primary' => esc_html__( 'Primary menu', 'twentytwentyone' ),
-				'footer'  => esc_html__( 'Secondary menu', 'twentytwentyone' ),
+				'primary'      => esc_html__( 'Primary menu', 'twentytwentyone' ),
+				'footer'       => esc_html__( 'Secondary menu', 'twentytwentyone' ),
+				// Module 3: Footer Quick Links columns
+				'footer-col-1' => esc_html__( 'Footer Column 1 (Quick Links)', 'twentytwentyone' ),
+				'footer-col-2' => esc_html__( 'Footer Column 2 (Quick Links)', 'twentytwentyone' ),
+				'footer-col-3' => esc_html__( 'Footer Column 3 (Quick Links)', 'twentytwentyone' ),
 			)
 		);
 
@@ -442,6 +445,14 @@ function twenty_twenty_one_scripts() {
 		array(),
 		wp_get_theme()->get( 'Version' ),
 		array( 'in_footer' => true )
+	);
+
+	// Module 3 Footer Stylesheet
+	wp_enqueue_style(
+		'module-footer-style',
+		get_template_directory_uri() . '/assets/css/module-footer.css',
+		array( 'twenty-twenty-one-style' ),
+		time()
 	);
 }
 add_action( 'wp_enqueue_scripts', 'twenty_twenty_one_scripts' );
