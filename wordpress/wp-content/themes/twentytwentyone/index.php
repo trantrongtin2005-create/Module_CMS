@@ -14,6 +14,9 @@
  * @since Twenty Twenty-One 1.0
  */
 
+if ( is_home() || is_front_page() ) {
+	wp_enqueue_style( 'module11-home', get_stylesheet_directory_uri() . '/module11.css', array(), '1.1.0' );
+}
 get_header(); ?>
 
 <?php if ( is_home() && ! is_front_page() && ! empty( single_post_title( '', false ) ) ) : ?>
@@ -22,24 +25,71 @@ get_header(); ?>
 	</header><!-- .page-header -->
 <?php endif; ?>
 
-<?php
-if ( have_posts() ) {
+<div class="module11-home-layout">
+	<aside class="module11-home-archive" aria-labelledby="module11-home-archive-title">
+		<h2 id="module11-home-archive-title">Bài viết mới nhất</h2>
+		<?php
+		$module11_latest_posts = new WP_Query(
+			array(
+				'post_type'           => 'post',
+				'post_status'         => 'publish',
+				'posts_per_page'      => -1,
+				'ignore_sticky_posts' => true,
+				'orderby'              => 'date',
+				'order'                => 'DESC',
+			)
+		);
+		?>
+		<?php if ( $module11_latest_posts->have_posts() ) : ?>
+			<ol class="module11-latest-list">
+				<?php while ( $module11_latest_posts->have_posts() ) : $module11_latest_posts->the_post(); ?>
+					<li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
+				<?php endwhile; ?>
+			</ol>
+		<?php else : ?>
+			<p>Chưa có bài viết.</p>
+		<?php endif; ?>
+		<?php wp_reset_postdata(); ?>
+	</aside>
 
-	// Load posts loop.
-	while ( have_posts() ) {
-		the_post();
+	<div class="module11-home-feed">
+		<?php
+		if ( have_posts() ) {
+			while ( have_posts() ) {
+				the_post();
+				get_template_part( 'template-parts/content/content', get_theme_mod( 'display_excerpt_or_full_post', 'excerpt' ) );
+			}
+			twenty_twenty_one_the_posts_navigation();
+		} else {
+			get_template_part( 'template-parts/content/content-none' );
+		}
+		?>
+	</div>
 
-		get_template_part( 'template-parts/content/content', get_theme_mod( 'display_excerpt_or_full_post', 'excerpt' ) );
-	}
+	<aside class="module11-home-comments" aria-labelledby="module11-home-comments-title">
+		<h2 id="module11-home-comments-title">Comments</h2>
+		<?php
+		$module11_home_comments = get_comments(
+			array(
+				'number'      => 6,
+				'status'      => 'approve',
+				'post_status' => 'publish',
+			)
+		);
+		?>
+		<?php if ( $module11_home_comments ) : ?>
+			<ul>
+				<?php foreach ( $module11_home_comments as $module11_home_comment ) : ?>
+					<li>
+						<strong><?php echo esc_html( $module11_home_comment->comment_author ); ?></strong>
+						<a href="<?php echo esc_url( get_comment_link( $module11_home_comment ) ); ?>"><?php echo esc_html( get_the_title( $module11_home_comment->comment_post_ID ) ); ?></a>
+					</li>
+				<?php endforeach; ?>
+			</ul>
+		<?php else : ?>
+			<p>Chưa có bình luận.</p>
+		<?php endif; ?>
+	</aside>
+</div>
 
-	// Previous/next page navigation.
-	twenty_twenty_one_the_posts_navigation();
-
-} else {
-
-	// If no content, include the "No posts found" template.
-	get_template_part( 'template-parts/content/content-none' );
-
-}
-
-get_footer();
+<?php get_footer(); ?>
