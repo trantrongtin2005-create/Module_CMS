@@ -14,7 +14,7 @@
  * @since Twenty Twenty-One 1.0
  */
 
-if ( is_home() || is_front_page() ) {
+if ( is_home() || is_front_page() || is_single() ) {
 	wp_enqueue_style( 'module11-home', get_stylesheet_directory_uri() . '/module11.css', array(), '1.1.0' );
 }
 get_header(); ?>

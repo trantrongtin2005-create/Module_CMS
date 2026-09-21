@@ -120,6 +120,10 @@ main.site-main:has(> .module11-home-layout) {
     line-height: 1.2;
 }
 .module11-latest-list a {
+    display: block;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
     color: inherit;
     text-decoration: none;
 }
@@ -228,8 +232,150 @@ main.site-main:has(> .module11-home-layout) {
     color: #777;
     font-size: .72rem;
 }
+.module11-single-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
+    gap: 24px;
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+    align-items: start;
+}
+main.site-main:has(.module11-single-layout) {
+    width: calc(100% - 24px) !important;
+    max-width: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+.module11-single-content {
+    width: 100%;
+    max-width: 900px;
+    min-width: 0;
+    justify-self: center;
+}
+.module11-single-content .entry-title,
+.module11-single-content .entry-title a,
+.module11-single-content .module6-title,
+.module11-single-content .module6-title a {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+.module11-single-sidebar {
+    width: 100%;
+    justify-self: end;
+}
+.module11-single-sidebar .widget-area {
+    display: block !important;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.module11-single-sidebar .widget-area > .widget:not(:has(.wp-block-latest-posts)) {
+    display: none;
+}
+.module11-single-sidebar .widget-area > .widget:has(.wp-block-latest-posts) {
+    display: block;
+    box-sizing: border-box;
+    padding: 14px 12px;
+    border: 1px solid #b9b9b9;
+    background: #d6e8e3;
+    color: #536b78;
+}
+.module11-single-sidebar .widget-area .wp-block-group__inner-container {
+    padding: 0;
+}
+.module11-single-sidebar .widget-area .wp-block-heading,
+.module11-single-sidebar .widget-area .wp-block-latest-posts {
+    margin: 0;
+}
+.module11-single-sidebar .widget-area .wp-block-heading {
+    margin-bottom: 10px;
+    color: #314957;
+    font-size: .9rem;
+    font-weight: 600;
+}
+.module11-single-sidebar .widget-area .wp-block-latest-posts {
+    padding-left: 0;
+    list-style: none;
+}
+.module11-single-sidebar .widget-area .wp-block-latest-posts li {
+    margin: 0;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(49, 73, 87, .35);
+    font-size: .75rem;
+    line-height: 1.25;
+}
+.module11-single-sidebar .widget-area .wp-block-latest-posts li:last-child { border-bottom: 0; }
+.module11-single-sidebar .widget-area .wp-block-latest-posts a {
+    color: inherit;
+    text-decoration: underline;
+}
+.module11-detail-news {
+    width: 100%;
+    overflow: hidden;
+    background: #58bcc0;
+    color: #fff;
+}
+.module11-detail-news-list { padding: 12px 14px 8px; }
+.module11-detail-news-item {
+    display: grid;
+    grid-template-columns: 58px minmax(0, 1fr);
+    gap: 10px;
+    align-items: center;
+    min-height: 48px;
+}
+.module11-detail-news-item > * { min-width: 0; }
+.module11-detail-news-item time {
+    display: grid;
+    grid-template-columns: 30px 20px;
+    grid-template-rows: 20px 15px;
+    justify-self: end;
+    color: #fff;
+    line-height: 1;
+    text-align: right;
+}
+.module11-detail-news-item time strong {
+    grid-row: 1 / 3;
+    align-self: center;
+    font-size: .95rem;
+    font-weight: 400;
+}
+.module11-detail-news-item time span,
+.module11-detail-news-item time small {
+    font-size: .95rem;
+    font-weight: 400;
+}
+.module11-detail-news-item time span { align-self: end; }
+.module11-detail-news-item time small { align-self: start; }
+.module11-detail-news-item a {
+    display: block;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    color: #fff;
+    font-size: .76rem;
+    line-height: 1.35;
+    text-decoration: none;
+}
+.module11-detail-news-item a:hover { text-decoration: underline; }
+.module11-detail-news-more {
+    display: block;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, .12);
+    color: #fff;
+    font-size: .72rem;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+}
+.module11-detail-news-more:hover { background: rgba(255, 255, 255, .2); }
 @media (max-width: 700px) {
     .module11-home-layout { grid-template-columns: 1fr; }
     .module11-latest-list { grid-template-columns: 1fr; }
     .module12-home-layout { grid-template-columns: 1fr; }
+    .module11-single-layout { grid-template-columns: 1fr; }
 }
