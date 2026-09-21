@@ -447,11 +447,27 @@ function twenty_twenty_one_scripts() {
 		array( 'in_footer' => true )
 	);
 
+	// Font Awesome CDN for Module 1 & Module 3 icons
+	wp_enqueue_style(
+		'font-awesome-cdn',
+		'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
+		array(),
+		'6.5.1'
+	);
+
+	// Module 1 Header Stylesheet
+	wp_enqueue_style(
+		'module-header-style',
+		get_template_directory_uri() . '/assets/css/module-header.css',
+		array( 'twenty-twenty-one-style', 'font-awesome-cdn' ),
+		time()
+	);
+
 	// Module 3 Footer Stylesheet
 	wp_enqueue_style(
 		'module-footer-style',
 		get_template_directory_uri() . '/assets/css/module-footer.css',
-		array( 'twenty-twenty-one-style' ),
+		array( 'twenty-twenty-one-style', 'font-awesome-cdn' ),
 		time()
 	);
 }
