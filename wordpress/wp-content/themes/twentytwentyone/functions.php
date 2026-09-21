@@ -470,6 +470,16 @@ function twenty_twenty_one_scripts() {
 		array( 'twenty-twenty-one-style', 'font-awesome-cdn' ),
 		time()
 	);
+
+	// Module 6 Detail Page Stylesheet (only on single posts)
+	if ( is_single() ) {
+		wp_enqueue_style(
+			'module-detail-style',
+			get_template_directory_uri() . '/assets/css/module-detail.css',
+			array( 'twenty-twenty-one-style' ),
+			time()
+		);
+	}
 }
 add_action( 'wp_enqueue_scripts', 'twenty_twenty_one_scripts' );
 
