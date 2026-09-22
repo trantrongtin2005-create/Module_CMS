@@ -6487,6 +6487,168 @@ body {
 	opacity: 0.9;
 }
 
+/* ==========================================================================
+   Section 7: Prev - Next Post Navigation Styles (Matching Wireframe Layout)
+   ========================================================================== */
+.gc-post-navigation {
+	margin: 30px 0 !important;
+	padding: 20px 0 !important;
+	border-top: 1px solid #e2e8f0;
+	border-bottom: 1px solid #e2e8f0;
+	width: 100%;
+	clear: both;
+}
+
+.gc-post-nav-inner {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 24px;
+	width: 100%;
+}
+
+.gc-post-nav-item {
+	flex: 1;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+}
+
+.gc-post-nav-prev {
+	align-items: flex-start;
+	text-align: left;
+}
+
+.gc-post-nav-next {
+	align-items: flex-end;
+	text-align: right;
+}
+
+.gc-post-nav-label-link {
+	font-size: 12px;
+	font-weight: 700;
+	color: #64748b !important;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	text-decoration: none !important;
+	margin-bottom: 8px;
+	display: inline-block;
+	transition: color 0.15s ease;
+}
+
+.gc-post-nav-label-link:hover {
+	color: #2563eb !important;
+}
+
+.gc-post-nav-content {
+	width: 100%;
+}
+
+.gc-post-nav-main-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 12px;
+	text-decoration: none !important;
+	color: inherit;
+	transition: opacity 0.15s ease;
+}
+
+.gc-post-nav-prev .gc-post-nav-main-link {
+	flex-direction: row;
+}
+
+.gc-post-nav-next .gc-post-nav-main-link {
+	flex-direction: row;
+}
+
+.gc-post-nav-main-link:hover {
+	opacity: 0.85;
+}
+
+.gc-post-nav-main-link:hover .gc-nav-title {
+	color: #2563eb !important;
+	text-decoration: underline !important;
+}
+
+/* Fraction Date Box (Matching Image Exactly) */
+.gc-nav-date-box {
+	display: inline-flex;
+	align-items: center;
+	gap: 2px;
+	font-family: "Times New Roman", Times, Georgia, serif;
+	flex-shrink: 0;
+	line-height: 1;
+	user-select: none;
+}
+
+.gc-nav-date-fraction {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	line-height: 1;
+}
+
+.gc-nav-day {
+	font-size: 14px;
+	font-weight: 400;
+	color: #222222;
+	line-height: 1;
+	font-family: "Times New Roman", Times, Georgia, serif;
+}
+
+.gc-nav-date-line {
+	width: 100%;
+	height: 1px;
+	background-color: #222222;
+	margin: 1px 0;
+}
+
+.gc-nav-month {
+	font-size: 14px;
+	font-weight: 400;
+	color: #222222;
+	line-height: 1;
+	font-family: "Times New Roman", Times, Georgia, serif;
+}
+
+.gc-nav-year {
+	font-size: 20px;
+	font-weight: 400;
+	color: #222222;
+	line-height: 1;
+	margin-left: 2px;
+	font-family: "Times New Roman", Times, Georgia, serif;
+}
+
+/* Post Title */
+.gc-nav-title {
+	font-size: 16px;
+	font-weight: 400;
+	color: #222222;
+	line-height: 1.45;
+	transition: color 0.15s ease;
+}
+
+.gc-nav-empty {
+	visibility: hidden;
+}
+
+@media (max-width: 640px) {
+	.gc-post-nav-inner {
+		flex-direction: column;
+		gap: 16px;
+	}
+	.gc-post-nav-next {
+		align-items: flex-start;
+		text-align: left;
+	}
+	.gc-post-nav-next .gc-post-nav-main-link {
+		flex-direction: row;
+	}
+}
+
+
 
 
 
