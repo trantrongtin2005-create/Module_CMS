@@ -17,7 +17,7 @@ while ( have_posts() ) :
 
 	get_template_part( 'template-parts/content/content-single' );
 
-	// Section 7: Prev - Next Post navigation (placed directly below Detail (6))
+	// 7. Prev - Next Post (nằm ngay dưới Detail (6))
 	get_template_part( 'template-parts/post/navigation' );
 
 	if ( is_attachment() ) {
@@ -30,7 +30,7 @@ while ( have_posts() ) :
 		);
 	}
 
-	// If comments are open or there is at least one comment, load up the comment template.
+	// 8. Comments (nằm ngay dưới Prev - Next Post (7))
 	if ( comments_open() || get_comments_number() ) {
 		comments_template();
 	}
