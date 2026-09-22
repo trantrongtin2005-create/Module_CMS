@@ -13,47 +13,51 @@ get_header();
 
 if ( have_posts() ) {
 	?>
-	<header class="page-header alignwide">
-		<h1 class="page-title custom-search-title">
-			<span class="search-label"><?php esc_html_e( 'Search:', 'twentytwentyone' ); ?></span> <span class="search-term">&ldquo;<?php echo esc_html( get_search_query( false ) ); ?>&rdquo;</span>
+	<div class="gc-search-banner default-max-width">
+		<h1 class="gc-search-banner-title">
+			<?php
+			printf(
+				/* translators: %s: Search term. */
+				esc_html__( 'Kết quả tìm kiếm cho: "%s"', 'twentytwentyone' ),
+				'<span class="gc-search-keyword">' . esc_html( get_search_query( false ) ) . '</span>'
+			);
+			?>
 		</h1>
-	</header><!-- .page-header -->
+		<div class="gc-search-banner-meta">
+			<?php
+			printf(
+				esc_html(
+					_n(
+						'Tìm thấy %d kết quả phù hợp',
+						'Tìm thấy %d kết quả phù hợp',
+						(int) $wp_query->found_posts,
+						'twentytwentyone'
+					)
+				),
+				(int) $wp_query->found_posts
+			);
+			?>
+		</div>
+	</div><!-- .gc-search-banner -->
 
-	<div class="search-result-count default-max-width">
+	<div class="gc-posts-grid default-max-width">
 		<?php
-		printf(
-			esc_html(
-				/* translators: %d: The number of search results. */
-				_n(
-					'We found %d result for your search.',
-					'We found %d results for your search.',
-					(int) $wp_query->found_posts,
-					'twentytwentyone'
-				)
-			),
-			(int) $wp_query->found_posts
-		);
+		// Start the Loop.
+		while ( have_posts() ) {
+			the_post();
+
+			get_template_part( 'template-parts/content/content-excerpt', get_post_format() );
+		} // End the loop.
 		?>
-	</div><!-- .search-result-count -->
+	</div><!-- .gc-posts-grid -->
+
 	<?php
-	// Start the Loop.
-	while ( have_posts() ) {
-		the_post();
-
-		/*
-		 * Include the Post-Format-specific template for the content.
-		 * If you want to override this in a child theme, then include a file
-		 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-		 */
-		get_template_part( 'template-parts/content/content-excerpt', get_post_format() );
-	} // End the loop.
-
 	// Previous/next page navigation.
 	twenty_twenty_one_the_posts_navigation();
 
-	// If no content, include the "No posts found" template.
 } else {
 	get_template_part( 'template-parts/content/content-none' );
 }
 
 get_footer();
+

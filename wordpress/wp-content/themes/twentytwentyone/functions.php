@@ -32,6 +32,7 @@ if ( ! function_exists( 'twenty_twenty_one_setup' ) ) {
 	 * @return void
 	 */
 	function twenty_twenty_one_setup() {
+
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
 
@@ -70,12 +71,8 @@ if ( ! function_exists( 'twenty_twenty_one_setup' ) ) {
 
 		register_nav_menus(
 			array(
-				'primary'      => esc_html__( 'Primary menu', 'twentytwentyone' ),
-				'footer'       => esc_html__( 'Secondary menu', 'twentytwentyone' ),
-				// Module 3: Footer Quick Links columns
-				'footer-col-1' => esc_html__( 'Footer Column 1 (Quick Links)', 'twentytwentyone' ),
-				'footer-col-2' => esc_html__( 'Footer Column 2 (Quick Links)', 'twentytwentyone' ),
-				'footer-col-3' => esc_html__( 'Footer Column 3 (Quick Links)', 'twentytwentyone' ),
+				'primary' => esc_html__( 'Primary menu', 'twentytwentyone' ),
+				'footer'  => esc_html__( 'Secondary menu', 'twentytwentyone' ),
 			)
 		);
 
@@ -446,40 +443,6 @@ function twenty_twenty_one_scripts() {
 		wp_get_theme()->get( 'Version' ),
 		array( 'in_footer' => true )
 	);
-
-	// Font Awesome CDN for Module 1 & Module 3 icons
-	wp_enqueue_style(
-		'font-awesome-cdn',
-		'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
-		array(),
-		'6.5.1'
-	);
-
-	// Module 1 Header Stylesheet
-	wp_enqueue_style(
-		'module-header-style',
-		get_template_directory_uri() . '/assets/css/module-header.css',
-		array( 'twenty-twenty-one-style', 'font-awesome-cdn' ),
-		time()
-	);
-
-	// Module 3 Footer Stylesheet
-	wp_enqueue_style(
-		'module-footer-style',
-		get_template_directory_uri() . '/assets/css/module-footer.css',
-		array( 'twenty-twenty-one-style', 'font-awesome-cdn' ),
-		time()
-	);
-
-	// Module 6 Detail Page Stylesheet (only on single posts)
-	if ( is_single() ) {
-		wp_enqueue_style(
-			'module-detail-style',
-			get_template_directory_uri() . '/assets/css/module-detail.css',
-			array( 'twenty-twenty-one-style' ),
-			time()
-		);
-	}
 }
 add_action( 'wp_enqueue_scripts', 'twenty_twenty_one_scripts' );
 
@@ -665,3 +628,24 @@ if ( ! function_exists( 'wp_get_list_item_separator' ) ) :
 		return __( ', ', 'twentytwentyone' );
 	}
 endif;
+
+/**
+ * Tự động tạo các Chuyên mục "Thể thao", "Khoa học", "Tin tức" nếu chưa có trong DB
+ */
+function sports_cms_ensure_default_categories() {
+	if ( ! function_exists( 'wp_insert_term' ) ) {
+		require_once ABSPATH . 'wp-admin/includes/taxonomy.php';
+	}
+	$categories = array(
+		'Thể thao' => 'the-thao',
+		'Khoa học' => 'khoa-hoc',
+		'Tin tức'  => 'tin-tuc',
+	);
+	foreach ( $categories as $name => $slug ) {
+		if ( ! term_exists( $slug, 'category' ) ) {
+			wp_insert_term( $name, 'category', array( 'slug' => $slug ) );
+		}
+	}
+}
+add_action( 'init', 'sports_cms_ensure_default_categories' );
+

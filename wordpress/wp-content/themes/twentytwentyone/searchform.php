@@ -19,18 +19,9 @@
 $twentytwentyone_unique_id = wp_unique_id( 'search-form-' );
 
 $twentytwentyone_aria_label = ! empty( $args['aria_label'] ) ? 'aria-label="' . esc_attr( $args['aria_label'] ) . '"' : '';
-$twentytwentyone_placeholder = ! empty( $args['placeholder'] ) ? $args['placeholder'] : __( 'Search topics or keywords', 'twentytwentyone' );
 ?>
-<div class="custom-search-container">
-	<form role="search" <?php echo $twentytwentyone_aria_label; ?> method="get" class="search-form custom-search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-		<label for="<?php echo esc_attr( $twentytwentyone_unique_id ); ?>" class="screen-reader-text"><?php _e( 'Search&hellip;', 'twentytwentyone' ); ?></label>
-		<div class="search-input-wrapper">
-			<svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-				<circle cx="11" cy="11" r="8"></circle>
-				<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-			</svg>
-			<input type="search" id="<?php echo esc_attr( $twentytwentyone_unique_id ); ?>" class="search-field" placeholder="<?php echo esc_attr( $twentytwentyone_placeholder ); ?>" value="<?php echo get_search_query(); ?>" name="s" />
-		</div>
-		<button type="submit" class="search-submit"><?php echo esc_html_x( 'Search', 'submit button', 'twentytwentyone' ); ?></button>
-	</form>
-</div>
+<form role="search" <?php echo $twentytwentyone_aria_label; ?> method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+	<label for="<?php echo esc_attr( $twentytwentyone_unique_id ); ?>"><?php _e( 'Search&hellip;', 'twentytwentyone' ); // phpcs:ignore: WordPress.Security.EscapeOutput.UnsafePrintingFunction -- core trusts translations ?></label>
+	<input type="search" id="<?php echo esc_attr( $twentytwentyone_unique_id ); ?>" class="search-field" value="<?php echo get_search_query(); ?>" name="s" />
+	<input type="submit" class="search-submit" value="<?php echo esc_attr_x( 'Search', 'submit button', 'twentytwentyone' ); ?>" />
+</form>
