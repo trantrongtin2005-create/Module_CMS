@@ -80,20 +80,13 @@ $twenty_twenty_one_comment_count = get_comments_number();
 	<?php endif; ?>
 
 	<?php
-	// Custom comment form matching wireframe image ("Make a Post")
-	$gc_comment_args = array(
-		'title_reply'        => __( 'Make a Post', 'twentytwentyone' ),
-		'title_reply_before' => '<div class="gc-comment-header-bar"><div class="gc-comment-tab">',
-		'title_reply_after'  => '</div></div>',
-		'comment_field'      => '<div class="gc-comment-body"><p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="4" placeholder="' . esc_attr__( 'What are you thinking...', 'twentytwentyone' ) . '" required="required"></textarea></p>',
-		'class_form'         => 'gc-comment-form',
-		'class_container'    => 'gc-comment-respond-container comment-respond',
-		'label_submit'       => __( 'share', 'twentytwentyone' ),
-		'class_submit'       => 'gc-comment-submit-btn',
-		'submit_button'      => '<div class="gc-comment-submit-wrapper"><input name="%1$s" type="submit" id="%2$s" class="%3$s" value="%4$s" /></div></div>',
+	comment_form(
+		array(
+			'title_reply'        => esc_html__( 'Leave a comment', 'twentytwentyone' ),
+			'title_reply_before' => '<h2 id="reply-title" class="comment-reply-title">',
+			'title_reply_after'  => '</h2>',
+		)
 	);
-
-	comment_form( $gc_comment_args );
 	?>
 
 </div><!-- #comments -->
