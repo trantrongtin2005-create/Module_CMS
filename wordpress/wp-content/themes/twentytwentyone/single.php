@@ -9,16 +9,17 @@
  * @since Twenty Twenty-One 1.0
  */
 
+wp_enqueue_style( 'module11-home', get_stylesheet_directory_uri() . '/module11.css', array(), '1.2.0' );
+
 get_header();
+
+echo '<div class="module11-single-layout"><main class="module11-single-content">';
 
 /* Start the Loop */
 while ( have_posts() ) :
 	the_post();
 
 	get_template_part( 'template-parts/content/content-single' );
-
-	// Section 7: Prev - Next Post navigation (placed directly below Detail (6))
-	get_template_part( 'template-parts/post/navigation' );
 
 	if ( is_attachment() ) {
 		// Parent post navigation.
@@ -34,6 +35,46 @@ while ( have_posts() ) :
 	if ( comments_open() || get_comments_number() ) {
 		comments_template();
 	}
+
+	// Previous/next post navigation.
+	$twentytwentyone_next = is_rtl() ? twenty_twenty_one_get_icon_svg( 'ui', 'arrow_left' ) : twenty_twenty_one_get_icon_svg( 'ui', 'arrow_right' );
+	$twentytwentyone_prev = is_rtl() ? twenty_twenty_one_get_icon_svg( 'ui', 'arrow_right' ) : twenty_twenty_one_get_icon_svg( 'ui', 'arrow_left' );
+
+	$twentytwentyone_next_label     = esc_html__( 'Next post', 'twentytwentyone' );
+	$twentytwentyone_previous_label = esc_html__( 'Previous post', 'twentytwentyone' );
+
+	the_post_navigation(
+		array(
+			'next_text' => '<p class="meta-nav">' . $twentytwentyone_next_label . $twentytwentyone_next . '</p><p class="post-title">%title</p>',
+			'prev_text' => '<p class="meta-nav">' . $twentytwentyone_prev . $twentytwentyone_previous_label . '</p><p class="post-title">%title</p>',
+		)
+	);
 endwhile; // End of the loop.
+
+echo '</main><aside class="module11-single-sidebar" aria-label="Recent posts">';
+$module11_detail_posts = new WP_Query(
+	array(
+		'post_type'           => 'post',
+		'post_status'         => 'publish',
+		'posts_per_page'      => 3,
+		'ignore_sticky_posts' => true,
+		'orderby'             => 'date',
+		'order'               => 'DESC',
+	)
+);
+
+if ( $module11_detail_posts->have_posts() ) {
+	echo '<section class="module11-detail-news"><div class="module11-detail-news-list">';
+	while ( $module11_detail_posts->have_posts() ) {
+		$module11_detail_posts->the_post();
+		echo '<article class="module11-detail-news-item">';
+		echo '<time datetime="' . esc_attr( get_the_date( 'c' ) ) . '"><strong>' . esc_html( get_the_date( 'd' ) ) . '</strong><span>' . esc_html( get_the_date( 'm' ) ) . '</span><small>' . esc_html( get_the_date( 'y' ) ) . '</small></time>';
+		echo '<a href="' . esc_url( get_permalink() ) . '">' . esc_html( get_the_title() ) . '</a>';
+		echo '</article>';
+	}
+	echo '</div><a class="module11-detail-news-more" href="' . esc_url( home_url( '/' ) ) . '">XEM TẤT CẢ TIN TỨC</a></section>';
+}
+wp_reset_postdata();
+echo '</aside></div>';
 
 get_footer();

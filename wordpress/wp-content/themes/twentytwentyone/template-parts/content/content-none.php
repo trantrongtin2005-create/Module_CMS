@@ -15,14 +15,8 @@
 	<header class="page-header alignwide">
 		<?php if ( is_search() ) : ?>
 
-			<h1 class="page-title">
-				<?php
-				printf(
-					/* translators: %s: Search term. */
-					esc_html__( 'Results for "%s"', 'twentytwentyone' ),
-					'<span class="page-description search-term">' . esc_html( get_search_query( false ) ) . '</span>'
-				);
-				?>
+			<h1 class="page-title custom-search-title">
+				<span class="search-label"><?php esc_html_e( 'Search:', 'twentytwentyone' ); ?></span> <span class="search-term">&ldquo;<?php echo esc_html( get_search_query( false ) ); ?>&rdquo;</span>
 			</h1>
 
 		<?php else : ?>
@@ -53,13 +47,17 @@
 
 		<?php elseif ( is_search() ) : ?>
 
-			<p><?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'twentytwentyone' ); ?></p>
-			<?php get_search_form(); ?>
+			<p class="custom-search-no-results-msg"><?php esc_html_e( 'We could not find any results for your search. You can give it another try through the search form below.', 'twentytwentyone' ); ?></p>
+			<div class="search-form-section-wrapper">
+				<?php get_search_form(); ?>
+			</div>
 
 		<?php else : ?>
 
-			<p><?php esc_html_e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'twentytwentyone' ); ?></p>
-			<?php get_search_form(); ?>
+			<p class="custom-search-no-results-msg"><?php esc_html_e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'twentytwentyone' ); ?></p>
+			<div class="search-form-section-wrapper">
+				<?php get_search_form(); ?>
+			</div>
 
 		<?php endif; ?>
 	</div><!-- .page-content -->
