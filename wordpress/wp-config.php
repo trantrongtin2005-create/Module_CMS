@@ -1,13 +1,13 @@
 <?php
 /**
- * WordPress configuration for XAMPP local development.
+ * WordPress configuration for XAMPP / Docker local development.
  */
 
 // ** Database settings ** //
 define( 'DB_NAME', 'wordpress' );
 define( 'DB_USER', 'root' );
-define( 'DB_PASSWORD', '' );
-define( 'DB_HOST', 'localhost' );
+define( 'DB_PASSWORD', 'root' );
+define( 'DB_HOST', 'db' );
 
 define( 'DB_CHARSET', 'utf8mb4' );
 define( 'DB_COLLATE', '' );
