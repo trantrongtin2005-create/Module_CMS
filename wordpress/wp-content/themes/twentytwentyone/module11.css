@@ -494,3 +494,129 @@ main.site-main:has(.module11-single-layout) {
 	}
 
 }
+/* =========================================================
+   MODULE 11 - LATEST NEWS TIMELINE
+   ========================================================= */
+
+.module11-timeline {
+	position: relative;
+	list-style: none;
+	margin: 12px 0 0;
+	padding: 0;
+}
+
+/* Đường dọc - đi qua tâm các vòng tròn */
+.module11-timeline::before {
+	content: '';
+	position: absolute;
+	left: 9px;
+	top: 10px;
+	bottom: 10px;
+	width: 2px;
+	background: #d4d9df;
+	z-index: 0;
+}
+
+/* Từng bài viết */
+.module11-timeline > li {
+	position: relative;
+	margin: 0;
+	padding: 0 0 20px 28px;
+}
+
+/* Vòng tròn */
+.module11-timeline > li::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 20px;
+	height: 20px;
+	box-sizing: border-box;
+	background: #fff;
+	border: 3px solid #22c0e8;
+	border-radius: 50%;
+	z-index: 1;
+}
+
+/* Dòng tiêu đề + ngày */
+.module11-timeline-header {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 8px;
+	margin: 0;
+	padding: 0;
+}
+
+/* Tiêu đề */
+.module11-timeline-title {
+	display: block;
+	min-width: 0;
+	color: #4385be;
+	font-size: .76rem;
+	font-weight: 400;
+	line-height: 1.35;
+	text-decoration: none;
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+.module11-timeline-title:hover {
+	text-decoration: underline;
+}
+
+/* Ngày */
+.module11-timeline-date {
+	flex: 0 0 auto;
+	margin-left: auto;
+	padding-top: 1px;
+	color: #777;
+	font-size: .58rem;
+	font-weight: 400;
+	line-height: 1.35;
+	white-space: nowrap;
+}
+
+/* Nội dung tóm tắt */
+.module11-timeline-excerpt {
+	margin: 4px 0 0;
+	padding: 0;
+	color: #666;
+	font-size: .66rem;
+	line-height: 1.45;
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Item cuối */
+.module11-timeline > li:last-child {
+	padding-bottom: 4px;
+}
+
+
+/* =========================================================
+   MODULE 11 - TIMELINE RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+	.module11-timeline {
+		margin-top: 10px;
+	}
+
+	.module11-timeline > li {
+		padding-left: 28px;
+	}
+
+	.module11-timeline-header {
+		display: block;
+	}
+
+	.module11-timeline-date {
+		display: block;
+		margin: 3px 0 0;
+		padding: 0;
+	}
+
+}

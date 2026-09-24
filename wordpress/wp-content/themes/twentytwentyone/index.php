@@ -28,33 +28,80 @@ get_header(); ?>
 
 <div class="module11-home-layout">
 	<aside class="module11-home-archive" aria-labelledby="module11-home-archive-title">
+
 		<h2 id="module11-home-archive-title">Bài viết mới nhất</h2>
+
 		<?php
 		$module11_latest_posts = new WP_Query(
 			array(
 				'post_type'           => 'post',
 				'post_status'         => 'publish',
-				'posts_per_page'      => -1,
+				'posts_per_page'      => 6,
 				'ignore_sticky_posts' => true,
-				'orderby'              => 'date',
-				'order'                => 'DESC',
+				'orderby'             => 'date',
+				'order'               => 'DESC',
 			)
 		);
 		?>
+
 		<?php if ($module11_latest_posts->have_posts()) : ?>
-			<ol class="module11-latest-list">
+
+			<ul class="module11-timeline">
+
 				<?php while ($module11_latest_posts->have_posts()) : $module11_latest_posts->the_post(); ?>
-					<li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
+
+					<li class="module11-timeline-item">
+
+						<div class="module11-timeline-header">
+
+							<a
+								class="module11-timeline-title"
+								href="<?php the_permalink(); ?>">
+								<?php the_title(); ?>
+							</a>
+
+							<span class="module11-timeline-date">
+								<?php echo esc_html(get_the_date('d/m/Y')); ?>
+							</span>
+
+						</div>
+
+						<p class="module11-timeline-excerpt">
+							<?php
+							$module11_excerpt = get_the_excerpt();
+
+							if (empty($module11_excerpt)) {
+								$module11_excerpt = get_the_content();
+							}
+
+							echo esc_html(
+								wp_trim_words(
+									wp_strip_all_tags($module11_excerpt),
+									12,
+									'...'
+								)
+							);
+							?>
+						</p>
+
+					</li>
+
 				<?php endwhile; ?>
-			</ol>
+
+			</ul>
+
 		<?php else : ?>
+
 			<p>Chưa có bài viết.</p>
+
 		<?php endif; ?>
+
 		<?php wp_reset_postdata(); ?>
+
 	</aside>
 
 
-	
+
 	<div class="module11-home-feed">
 
 		<?php if (have_posts()) : ?>
