@@ -6330,6 +6330,123 @@ input[type="submit"].search-submit:hover {
 	}
 }
 
+/* ==========================================================================
+   Section 7: Next Post Navigation Styles (Matching Wireframe Image)
+   ========================================================================== */
+.module7-next-post-navigation,
+.gc-post-navigation {
+	margin: 30px 0 !important;
+	padding: 15px 0 !important;
+	width: 100% !important;
+	clear: both !important;
+}
+
+.module7-next-post-list,
+.gc-post-nav-list {
+	display: flex !important;
+	flex-direction: column !important;
+	gap: 20px !important;
+	width: 100% !important;
+}
+
+.module7-next-post-item,
+.gc-post-nav-item {
+	display: block !important;
+	width: 100% !important;
+}
+
+.module7-next-post-link,
+.gc-post-nav-link {
+	display: inline-flex !important;
+	align-items: flex-start !important;
+	text-decoration: none !important;
+	color: inherit !important;
+	transition: opacity 0.15s ease !important;
+}
+
+.module7-next-post-link:hover,
+.gc-post-nav-link:hover {
+	opacity: 0.85 !important;
+}
+
+.module7-next-post-link:hover .module7-title,
+.gc-post-nav-link:hover .gc-nav-title {
+	color: #0056b3 !important;
+	text-decoration: underline !important;
+}
+
+/* Fraction Date Box (Matching Image Exactly) */
+.module7-date-box,
+.gc-nav-date-box {
+	display: inline-flex !important;
+	align-items: flex-start !important;
+	font-family: "Times New Roman", Times, Georgia, serif !important;
+	line-height: 1 !important;
+	user-select: none !important;
+	flex-shrink: 0 !important;
+	margin-right: 24px !important;
+}
+
+.module7-date-fraction,
+.gc-nav-date-fraction {
+	display: inline-flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	justify-content: center !important;
+	line-height: 1 !important;
+}
+
+.module7-day,
+.gc-nav-day {
+	font-size: 15px !important;
+	font-weight: 400 !important;
+	color: #222222 !important;
+	line-height: 1 !important;
+	font-family: "Times New Roman", Times, Georgia, serif !important;
+	padding: 0 1px !important;
+}
+
+.module7-date-line,
+.gc-nav-date-line {
+	width: 100% !important;
+	height: 1px !important;
+	background-color: #222222 !important;
+	margin: 1px 0 !important;
+}
+
+.module7-month,
+.gc-nav-month {
+	font-size: 15px !important;
+	font-weight: 400 !important;
+	color: #222222 !important;
+	line-height: 1 !important;
+	font-family: "Times New Roman", Times, Georgia, serif !important;
+	padding: 0 1px !important;
+}
+
+.module7-year,
+.gc-nav-year {
+	font-size: 13px !important;
+	font-weight: 400 !important;
+	color: #222222 !important;
+	line-height: 1 !important;
+	margin-left: 2px !important;
+	margin-top: 0px !important;
+	font-family: "Times New Roman", Times, Georgia, serif !important;
+}
+
+/* Post Title */
+.module7-title,
+.gc-nav-title {
+	font-size: 16px !important;
+	font-weight: 400 !important;
+	color: #222222 !important;
+	line-height: 1.45 !important;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !important;
+	transition: color 0.15s ease !important;
+}
+
+
 
 
 
