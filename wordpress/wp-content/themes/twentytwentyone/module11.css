@@ -379,3 +379,118 @@ main.site-main:has(.module11-single-layout) {
     .module12-home-layout { grid-template-columns: 1fr; }
     .module11-single-layout { grid-template-columns: 1fr; }
 }
+
+@media (max-width: 700px) {
+
+	.module11-home-layout { grid-template-columns: 1fr; }
+
+	.module11-latest-list { grid-template-columns: 1fr; }
+
+	.module12-home-layout { grid-template-columns: 1fr; }
+
+	.module11-single-layout { grid-template-columns: 1fr; }
+
+}
+
+/* =========================================================
+   MODULE 13 - POST GRID
+   ========================================================= */
+
+.module13-post-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 20px;
+	width: 100%;
+}
+
+.module13-post-card {
+	min-width: 0;
+	margin: 0;
+	padding: 0;
+	background: #fff;
+	border: 1px solid #ddd;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+
+.module13-post-thumb {
+	width: 100%;
+	height: 180px;
+	overflow: hidden;
+}
+
+.module13-post-thumb a {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.module13-post-thumb img {
+	display: block;
+	width: 100% !important;
+	height: 100% !important;
+	max-width: none !important;
+	object-fit: cover;
+}
+
+.module13-post-placeholder {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	background: #f1f5f9;
+}
+
+.module13-post-content {
+	padding: 12px;
+}
+
+.module13-post-title {
+	margin: 0 0 8px;
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1.35;
+}
+
+.module13-post-title a {
+	color: #333;
+	text-decoration: none;
+}
+
+.module13-post-title a:hover {
+	text-decoration: underline;
+}
+
+.module13-post-excerpt {
+	margin: 0;
+	color: #666;
+	font-size: 0.8rem;
+	line-height: 1.5;
+}
+
+
+/* =========================================================
+   MODULE 13 - RESPONSIVE
+   ========================================================= */
+
+@media (min-width: 701px) and (max-width: 1000px) {
+
+	.module13-post-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+}
+
+@media (max-width: 700px) {
+
+	.module13-post-grid {
+		grid-template-columns: 1fr;
+		gap: 16px;
+	}
+
+	.module13-post-thumb {
+		height: 200px;
+	}
+
+}
