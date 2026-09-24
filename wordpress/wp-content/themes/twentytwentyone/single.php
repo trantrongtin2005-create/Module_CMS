@@ -13,7 +13,13 @@ wp_enqueue_style( 'module11-home', get_stylesheet_directory_uri() . '/module11.c
 
 get_header();
 
-echo '<div class="module11-single-layout"><main class="module11-single-content">';
+echo '<div class="module11-single-layout">';
+
+echo '<aside class="module9-single-sidebar">';
+get_template_part( 'template-parts/sidebar/categories' );
+echo '</aside>';
+
+echo '<main class="module11-single-content">';
 
 /* Start the Loop */
 while ( have_posts() ) :
