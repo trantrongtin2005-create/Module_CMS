@@ -1,4 +1,3 @@
-
 <?php
 /**
  * WordPress configuration for XAMPP local development.
