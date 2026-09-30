@@ -6785,6 +6785,156 @@ ol.comment-list li.comment {
 	text-decoration: underline !important;
 }
 
+/* ==========================================================================
+   TÍNH ĐIỂM LẦN 4 MÔN CMS: CSS tùy chỉnh cho Widget Test 4 (Giao diện chuẩn hình mẫu)
+   ========================================================================== */
+
+/* Khung chứa tổng thể của Widget Test 4 */
+.widget-test-4-container {
+	width: 100% !important;
+	box-sizing: border-box !important;
+	margin: 20px 0 !important;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !important;
+}
+
+/* Thanh Navigation danh mục ở góc trên bên phải */
+.widget-test-4-header {
+	display: flex !important;
+	justify-content: flex-end !important;
+	align-items: center !important;
+	gap: 12px !important;
+	font-size: 15px !important;
+	color: #333333 !important;
+	margin-bottom: 16px !important;
+	padding-right: 2px !important;
+}
+
+/* Kiểu dáng liên kết danh mục hàng ngang */
+.widget-test-4-nav-link {
+	color: #333333 !important;
+	text-decoration: none !important;
+	font-size: 15px !important;
+	font-weight: 400 !important;
+}
+
+.widget-test-4-nav-link:hover {
+	color: #0066cc !important;
+	text-decoration: underline !important;
+}
+
+/* Dấu gạch đứng phân cách '|' giữa các danh mục */
+.widget-test-4-sep {
+	color: #cccccc !important;
+	font-size: 14px !important;
+	user-select: none !important;
+}
+
+/* Khung Wrapper cho Menu sổ xuống (Dropdown) */
+.widget-test-4-dropdown-wrapper {
+	position: relative !important;
+	display: inline-block !important;
+}
+
+/* Biểu tượng mũi tên chữ 'v' để mở danh mục phụ */
+.widget-test-4-caret {
+	font-size: 13px !important;
+	color: #333333 !important;
+	font-weight: bold !important;
+	margin-left: 2px !important;
+	cursor: pointer !important;
+	padding: 2px 4px !important;
+	user-select: none !important;
+	transition: color 0.15s ease !important;
+}
+
+.widget-test-4-dropdown-wrapper:hover .widget-test-4-caret,
+.widget-test-4-dropdown-wrapper:focus-within .widget-test-4-caret {
+	color: #0066cc !important;
+}
+
+/* Khung chứa Menu xổ xuống (Dropdown Menu) */
+.widget-test-4-dropdown-menu {
+	display: none !important;
+	position: absolute !important;
+	right: 0 !important;
+	top: 100% !important;
+	background-color: #ffffff !important;
+	min-width: 160px !important;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+	border: 1px solid #e2e8f0 !important;
+	border-radius: 4px !important;
+	padding: 6px 0 !important;
+	z-index: 9999 !important;
+	margin-top: 4px !important;
+}
+
+/* Tự động hiển thị Dropdown Menu khi rê chuột (Hover) hoặc chọn (Focus) vào icon chữ 'v' */
+.widget-test-4-dropdown-wrapper:hover .widget-test-4-dropdown-menu,
+.widget-test-4-dropdown-wrapper:focus-within .widget-test-4-dropdown-menu {
+	display: block !important;
+}
+
+/* Đơn vị danh mục bên trong Dropdown Menu */
+.widget-test-4-dropdown-item {
+	display: block !important;
+	padding: 8px 16px !important;
+	color: #333333 !important;
+	text-decoration: none !important;
+	font-size: 14px !important;
+	white-space: nowrap !important;
+	transition: background-color 0.15s ease, color 0.15s ease !important;
+}
+
+.widget-test-4-dropdown-item:hover {
+	background-color: #f5f7fa !important;
+	color: #0066cc !important;
+}
+
+/* Khung chứa danh sách bài viết - Có đường viền dọc bên trái theo hình mẫu */
+.widget-test-4-body {
+	border-left: 1px solid #e2e8f0 !important;
+	padding-left: 20px !important;
+	box-sizing: border-box !important;
+}
+
+/* Danh sách bài viết không có bullet point */
+.widget-test-4-list {
+	list-style: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+/* Từng bài viết có đường kẻ mờ phân cách bên dưới */
+.widget-test-4-item {
+	padding: 14px 0 !important;
+	border-bottom: 1px solid #f0f0f0 !important;
+	margin: 0 !important;
+}
+
+.widget-test-4-item:last-child {
+	border-bottom: 1px solid #f0f0f0 !important;
+}
+
+/* Kiểu chữ tiêu đề bài viết - Chuẩn hóa Tiếng Việt, không lỗi font */
+.widget-test-4-title {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+	font-size: 16px !important;
+	line-height: 1.55 !important;
+	color: #262626 !important;
+	text-decoration: none !important;
+	display: block !important;
+	font-weight: 400 !important;
+	text-transform: none !important;
+	letter-spacing: normal !important;
+}
+
+.widget-test-4-title:hover {
+	color: #0056b3 !important;
+}
+
+
+
+
 
 
 
