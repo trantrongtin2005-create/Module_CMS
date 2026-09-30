@@ -480,6 +480,14 @@ function twenty_twenty_one_scripts() {
 			time()
 		);
 	}
+
+	// Widget Test 4 Stylesheet
+	wp_enqueue_style(
+		'widget-test-4-style',
+		get_template_directory_uri() . '/assets/css/widget-test-4.css',
+		array( 'twenty-twenty-one-style' ),
+		time()
+	);
 }
 add_action( 'wp_enqueue_scripts', 'twenty_twenty_one_scripts' );
 
@@ -665,3 +673,9 @@ if ( ! function_exists( 'wp_get_list_item_separator' ) ) :
 		return __( ', ', 'twentytwentyone' );
 	}
 endif;
+
+/**
+ * Module: Widget Test 4
+ */
+require_once get_template_directory() . '/inc/widget-test-4.php';
+
