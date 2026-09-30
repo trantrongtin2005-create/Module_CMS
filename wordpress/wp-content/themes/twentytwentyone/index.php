@@ -36,7 +36,7 @@ get_header(); ?>
 			array(
 				'post_type'           => 'post',
 				'post_status'         => 'publish',
-				'posts_per_page'      => 6,
+				'posts_per_page'      => 11,
 				'ignore_sticky_posts' => true,
 				'orderby'             => 'date',
 				'order'               => 'DESC',
@@ -46,49 +46,17 @@ get_header(); ?>
 
 		<?php if ($module11_latest_posts->have_posts()) : ?>
 
-			<ul class="module11-timeline">
+			<ol class="module11-latest-list">
 
 				<?php while ($module11_latest_posts->have_posts()) : $module11_latest_posts->the_post(); ?>
 
-					<li class="module11-timeline-item">
-
-						<div class="module11-timeline-header">
-
-							<a
-								class="module11-timeline-title"
-								href="<?php the_permalink(); ?>">
-								<?php the_title(); ?>
-							</a>
-
-							<span class="module11-timeline-date">
-								<?php echo esc_html(get_the_date('d/m/Y')); ?>
-							</span>
-
-						</div>
-
-						<p class="module11-timeline-excerpt">
-							<?php
-							$module11_excerpt = get_the_excerpt();
-
-							if (empty($module11_excerpt)) {
-								$module11_excerpt = get_the_content();
-							}
-
-							echo esc_html(
-								wp_trim_words(
-									wp_strip_all_tags($module11_excerpt),
-									12,
-									'...'
-								)
-							);
-							?>
-						</p>
-
+					<li>
+						<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 					</li>
 
 				<?php endwhile; ?>
 
-			</ul>
+			</ol>
 
 		<?php else : ?>
 

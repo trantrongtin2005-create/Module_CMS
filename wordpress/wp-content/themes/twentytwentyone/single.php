@@ -13,7 +13,39 @@ wp_enqueue_style( 'module11-home', get_stylesheet_directory_uri() . '/module11.c
 
 get_header();
 
-echo '<div class="module11-single-layout"><main class="module11-single-content">';
+echo '<div class="module11-single-layout"><aside class="module11-single-sidebar" aria-label="Bài viết mới nhất">';
+
+$module11_detail_posts = new WP_Query(
+	array(
+		'post_type'           => 'post',
+		'post_status'         => 'publish',
+		'posts_per_page'      => 6,
+		'ignore_sticky_posts' => true,
+		'orderby'             => 'date',
+		'order'               => 'DESC',
+	)
+);
+
+if ( $module11_detail_posts->have_posts() ) {
+	echo '<section class="module11-home-archive" aria-labelledby="module11-detail-latest-title"><h2 id="module11-detail-latest-title">Bài viết mới nhất</h2><ul class="module11-timeline">';
+	while ( $module11_detail_posts->have_posts() ) {
+		$module11_detail_posts->the_post();
+		$module11_excerpt = get_the_excerpt();
+		if ( empty( $module11_excerpt ) ) {
+			$module11_excerpt = get_the_content();
+		}
+		echo '<li class="module11-timeline-item"><div class="module11-timeline-header">';
+		echo '<a class="module11-timeline-title" href="' . esc_url( get_permalink() ) . '">' . esc_html( get_the_title() ) . '</a>';
+		echo '<span class="module11-timeline-date">' . esc_html( get_the_date( 'd/m/Y' ) ) . '</span></div>';
+		echo '<p class="module11-timeline-excerpt">' . esc_html( wp_trim_words( wp_strip_all_tags( $module11_excerpt ), 12, '...' ) ) . '</p></li>';
+	}
+	echo '</ul></section>';
+} else {
+	echo '<section class="module11-home-archive"><h2>Bài viết mới nhất</h2><p>Chưa có bài viết.</p></section>';
+}
+wp_reset_postdata();
+
+echo '</aside><main class="module11-single-content">';
 
 /* Start the Loop */
 while ( have_posts() ) :
@@ -40,30 +72,6 @@ while ( have_posts() ) :
 	}
 endwhile; // End of the loop.
 
-echo '</main><aside class="module11-single-sidebar" aria-label="Recent posts">';
-$module11_detail_posts = new WP_Query(
-	array(
-		'post_type'           => 'post',
-		'post_status'         => 'publish',
-		'posts_per_page'      => 3,
-		'ignore_sticky_posts' => true,
-		'orderby'             => 'date',
-		'order'               => 'DESC',
-	)
-);
-
-if ( $module11_detail_posts->have_posts() ) {
-	echo '<section class="module11-detail-news"><div class="module11-detail-news-list">';
-	while ( $module11_detail_posts->have_posts() ) {
-		$module11_detail_posts->the_post();
-		echo '<article class="module11-detail-news-item">';
-		echo '<time datetime="' . esc_attr( get_the_date( 'c' ) ) . '"><strong>' . esc_html( get_the_date( 'd' ) ) . '</strong><span>' . esc_html( get_the_date( 'm' ) ) . '</span><small>' . esc_html( get_the_date( 'y' ) ) . '</small></time>';
-		echo '<a href="' . esc_url( get_permalink() ) . '">' . esc_html( get_the_title() ) . '</a>';
-		echo '</article>';
-	}
-	echo '</div><a class="module11-detail-news-more" href="' . esc_url( home_url( '/' ) ) . '">XEM TẤT CẢ TIN TỨC</a></section>';
-}
-wp_reset_postdata();
-echo '</aside></div>';
+echo '</main></div>';
 
 get_footer();
