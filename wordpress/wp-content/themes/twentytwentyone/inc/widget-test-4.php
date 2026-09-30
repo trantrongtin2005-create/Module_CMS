@@ -18,8 +18,8 @@ class widget_test_4 extends WP_Widget {
 	 */
 	public function __construct() {
 		parent::__construct(
-			'widget_test_4', // Base ID
-			__( 'widget_test_4', 'twentytwentyone' ), // Tên hiển thị trong WP Admin
+			'widget_test_4',
+			__( 'Widget Test 4 (Random Posts)', 'twentytwentyone' ),
 			array(
 				'classname'                   => 'widget_test_4',
 				'description'                 => __( 'Widget Test 4: Danh sách video tin tức thể thao ngẫu nhiên (random)', 'twentytwentyone' ),
@@ -39,7 +39,6 @@ class widget_test_4 extends WP_Widget {
 		$number   = ! empty( $instance['number'] ) ? absint( $instance['number'] ) : 5;
 		$category = ! empty( $instance['category'] ) ? absint( $instance['category'] ) : 0;
 
-		// Query random posts theo yêu cầu: "random, không SV nào giống nhau"
 		$query_args = array(
 			'post_type'           => 'post',
 			'post_status'         => 'publish',
@@ -48,6 +47,11 @@ class widget_test_4 extends WP_Widget {
 			'ignore_sticky_posts' => true,
 			'no_found_rows'       => true,
 		);
+
+		// Tránh hiển thị bài viết hiện tại nếu đang ở trang chi tiết bài viết
+		if ( is_single() ) {
+			$query_args['post__not_in'] = array( get_queried_object_id() );
+		}
 
 		if ( $category > 0 ) {
 			$query_args['cat'] = $category;
@@ -77,8 +81,8 @@ class widget_test_4 extends WP_Widget {
 						if ( empty( $badge ) ) {
 							$badge = get_post_meta( $post_id, '_video_duration', true );
 						}
-						// Nếu bài viết chưa có meta, tự động tạo badge trực quan:
-						// Bài đầu tiên hoặc một số bài có thể là "Đang phát", còn lại là thời lượng video "mm:ss"
+
+						// Nếu bài viết chưa có meta, tạo badge thời lượng giả định
 						if ( empty( $badge ) ) {
 							if ( $item_index === 0 && ( $post_id % 3 === 0 || $post_id % 2 === 0 ) ) {
 								$badge = 'Đang phát';
@@ -90,7 +94,6 @@ class widget_test_4 extends WP_Widget {
 						}
 
 						// Lấy hình ảnh đại diện (thumbnail)
-						$thumb_html = '';
 						if ( has_post_thumbnail( $post_id ) ) {
 							$thumb_html = get_the_post_thumbnail(
 								$post_id,
@@ -101,8 +104,7 @@ class widget_test_4 extends WP_Widget {
 								)
 							);
 						} else {
-							// Fallback hình ảnh nếu bài viết không có thumbnail
-							$fallback_src = get_template_directory_uri() . '/assets/images/default-thumb.jpg';
+							$fallback_src = get_theme_file_uri( '/assets/images/default-thumb.jpg' );
 							$thumb_html   = '<img src="' . esc_url( $fallback_src ) . '" alt="' . esc_attr( $title_txt ) . '" class="widget-test-4-img" />';
 						}
 						?>
@@ -158,7 +160,7 @@ class widget_test_4 extends WP_Widget {
 			<label for="<?php echo esc_attr( $this->get_field_id( 'number' ) ); ?>">
 				<?php esc_html_e( 'Số lượng bài hiển thị:', 'twentytwentyone' ); ?>
 			</label>
-			<input class="tiny-text" id="<?php echo esc_attr( $this->get_field_id( 'number' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'number' ) ); ?>" type="number" step="1" min="1" max="20" value="<?php echo esc_attr( $number ); ?>" size="3" />
+			<input class="tiny-text" id="<?php echo esc_attr( $this->get_field_id( 'number' ) ); ?>" name="<?php echo esc_attr( $this->get_field_id( 'number' ) ); ?>" type="number" step="1" min="1" max="20" value="<?php echo esc_attr( $number ); ?>" size="3" />
 		</p>
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'category' ) ); ?>">
