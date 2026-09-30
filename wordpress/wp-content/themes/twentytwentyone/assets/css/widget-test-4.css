@@ -5,12 +5,15 @@
  * ============================================================
  */
 
-/* Vùng hiển thị widget phía trên Footer */
+/* Vùng hiển thị widget phía trên Footer - Bố cục 3 cột (Bạn 1 Trái | Widget Của Tôi Ở Giữa | Bạn 2 Phải) */
 .footer-widget-test-4-area,
 aside.widget-area.footer-widget-test-4-area {
     display: flex !important;
-    justify-content: center !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: space-between !important;
     align-items: flex-start !important;
+    gap: 20px !important;
     width: 100% !important;
     max-width: 1200px !important;
     margin: 40px auto 30px !important;
@@ -19,27 +22,44 @@ aside.widget-area.footer-widget-test-4-area {
     clear: both !important;
 }
 
-/* Cho phép hiển thị widget trong widget-area (ghi đè mọi rule ẩn trước đó) */
-.footer-widget-test-4-area .widget,
-.widget-area .widget_widget_test_4,
-.widget_widget_test_4 {
+/* Các thẻ con đại diện cho từng Widget cột */
+.footer-widget-test-4-area > .widget,
+.footer-widget-test-4-area > section,
+.footer-widget-test-4-area > div,
+.footer-widget-test-4-area .widget_widget_test_4,
+.footer-widget-test-4-area .user-widget-wrapper {
     display: block !important;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 440px;
+    margin: 0 0 20px !important;
+    width: 100% !important;
+    min-width: 320px !important;
+    max-width: 370px !important;
+    flex: 1 1 340px !important;
+    box-sizing: border-box !important;
+}
+
+/* Định vị Widget Của Bạn nằm BÊN TRÁI (Order 1) */
+.footer-widget-test-4-area > .user-widget-left,
+.footer-widget-test-4-area > .widget_widget_test_4 {
+    order: 1 !important;
+}
+
+/* Các Widget khác của thành viên nằm nối tiếp bên phải */
+.footer-widget-test-4-area > *:not(.user-widget-left):not(.widget_widget_test_4) {
+    order: 2 !important;
 }
 
 /* Card bao quanh widget_test_4 */
 .widget-test-4-card {
-    background-color: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 4px;
-    padding: 16px 18px 16px 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    max-width: 440px;
-    width: 100%;
-    margin: 0 auto;
-    box-sizing: border-box;
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 4px !important;
+    padding: 16px 18px 16px 20px !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+    max-width: 440px !important;
+    min-width: 340px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
 }
 
 /* Tiêu đề chính của widget nếu có */
@@ -109,13 +129,14 @@ aside.widget-area.footer-widget-test-4-area {
 
 /* Khung hình thumbnail bên trái */
 .widget-test-4-thumb-wrapper {
-    position: relative;
-    flex: 0 0 130px;
-    width: 130px;
-    height: 74px;
-    border-radius: 2px;
-    overflow: hidden;
-    background-color: #1a1a1a;
+    position: relative !important;
+    flex: 0 0 130px !important;
+    width: 130px !important;
+    min-width: 130px !important;
+    height: 74px !important;
+    border-radius: 2px !important;
+    overflow: hidden !important;
+    background-color: #1a1a1a !important;
 }
 
 /* Hình ảnh thumbnail */
@@ -139,55 +160,58 @@ aside.widget-area.footer-widget-test-4-area {
 
 /* Badge "Đang phát" (Live) ở giữa ảnh */
 .widget-test-4-badge-live {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.45);
-    color: #ffffff;
-    font-size: 13px;
-    font-weight: 700;
-    font-family: Arial, Helvetica, sans-serif;
-    letter-spacing: 0.3px;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
-    pointer-events: none;
+    position: absolute !important;
+    inset: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: rgba(0, 0, 0, 0.45) !important;
+    color: #ffffff !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    letter-spacing: 0.3px !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9) !important;
+    pointer-events: none !important;
 }
 
 /* Badge thời lượng video ("01:19", "03:14", "03:03", ...) góc dưới bên trái */
 .widget-test-4-badge-time {
-    position: absolute;
-    bottom: 6px;
-    left: 6px;
-    background-color: rgba(0, 0, 0, 0.85);
-    color: #ffffff;
-    font-size: 11px;
-    font-weight: 700;
-    line-height: 1;
-    padding: 3px 5px;
-    border-radius: 2px;
-    font-family: Arial, Helvetica, sans-serif;
-    letter-spacing: 0.5px;
-    pointer-events: none;
+    position: absolute !important;
+    bottom: 6px !important;
+    left: 6px !important;
+    background-color: rgba(0, 0, 0, 0.85) !important;
+    color: #ffffff !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    padding: 3px 5px !important;
+    border-radius: 2px !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    letter-spacing: 0.5px !important;
+    pointer-events: none !important;
 }
 
 /* Khung tiêu đề bài viết bên phải */
 .widget-test-4-title-wrapper {
-    flex: 1;
-    min-width: 0;
+    flex: 1 1 auto !important;
+    min-width: 140px !important;
+    box-sizing: border-box !important;
 }
 
 /* Tiêu đề bài viết theo font có chân (Serif) theo đúng mẫu ảnh */
 .widget-test-4-item-title {
-    font-family: 'Merriweather', Georgia, 'Times New Roman', serif;
-    font-size: 15px;
-    font-weight: 700;
-    line-height: 1.35;
+    font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
     color: #1a1a1a !important;
-    margin: 0;
-    padding: 0;
-    word-break: break-word;
-    transition: color 0.2s ease;
+    margin: 0 !important;
+    padding: 0 !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+    transition: color 0.2s ease !important;
 }
 
 .widget-test-4-item:hover .widget-test-4-item-title {
