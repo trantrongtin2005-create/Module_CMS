@@ -6786,140 +6786,201 @@ ol.comment-list li.comment {
 }
 
 /* ==========================================================================
-   TÍNH ĐIỂM LẦN 4 MÔN CMS: CSS tùy chỉnh cho Widget Test 4 (Giao diện chuẩn hình mẫu)
+   CSS tùy chỉnh cho Member 4 Widget (Giao diện chuẩn hình mẫu - Fail-Proof)
    ========================================================================== */
 
-/* Khung chứa tổng thể của Widget Test 4 */
-.widget-test-4-container {
+.widget-member-4,
+.widget_member_4,
+.widget_member_4_widget,
+.member-4-container,
+#member_4_widget_content {
 	position: relative !important;
 	display: block !important;
 	width: 100% !important;
 	box-sizing: border-box !important;
 	margin: 20px 0 !important;
 	clear: both !important;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !important;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+	color: #262626 !important;
 }
 
-/* Thanh Navigation danh mục ở góc trên bên phải */
-.widget-test-4-header {
+/* Header & Nav - Right Aligned Category Bar */
+.widget-member-4 .member-4-header,
+.widget_member_4_widget .member-4-header,
+.member-4-header {
 	display: flex !important;
 	justify-content: flex-end !important;
 	align-items: center !important;
-	gap: 12px !important;
-	font-size: 15px !important;
-	color: #333333 !important;
-	margin-bottom: 16px !important;
+	width: 100% !important;
+	margin-bottom: 18px !important;
 	padding-right: 2px !important;
+	box-sizing: border-box !important;
 }
 
-/* Kiểu dáng liên kết danh mục hàng ngang */
-.widget-test-4-nav-link {
+.widget-member-4 .member-4-nav,
+.widget_member_4_widget .member-4-nav,
+.member-4-nav {
+	display: flex !important;
+	align-items: center !important;
+	flex-wrap: wrap !important;
+	justify-content: flex-end !important;
+	gap: 8px !important;
+	font-size: 15px !important;
+	color: #333333 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	list-style: none !important;
+}
+
+/* Category Nav Link */
+.widget-member-4 .member-4-nav-link,
+.widget_member_4_widget .member-4-nav-link,
+.member-4-nav-link,
+.member-4-nav a {
 	color: #333333 !important;
 	text-decoration: none !important;
 	font-size: 15px !important;
 	font-weight: 400 !important;
+	background: transparent !important;
+	border: none !important;
+	box-shadow: none !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	transition: color 0.15s ease !important;
 }
 
-.widget-test-4-nav-link:hover {
+.widget-member-4 .member-4-nav-link:hover,
+.widget_member_4_widget .member-4-nav-link:hover,
+.member-4-nav-link:hover,
+.member-4-nav a:hover {
 	color: #0066cc !important;
 	text-decoration: underline !important;
 }
 
-/* Dấu gạch đứng phân cách '|' giữa các danh mục */
-.widget-test-4-sep {
-	color: #cccccc !important;
+/* Separator '|' */
+.widget-member-4 .member-4-sep,
+.widget_member_4_widget .member-4-sep,
+.member-4-sep {
+	color: #b0b0b0 !important;
 	font-size: 14px !important;
 	user-select: none !important;
-}
-
-/* Khung Wrapper cho Menu sổ xuống (Dropdown) */
-.widget-test-4-dropdown-wrapper {
-	position: relative !important;
+	margin: 0 2px !important;
 	display: inline-block !important;
 }
 
-/* Biểu tượng mũi tên chữ 'v' để mở danh mục phụ */
-.widget-test-4-caret {
+/* Dropdown Menu Wrapper */
+.widget-member-4 .member-4-dropdown-wrapper,
+.widget_member_4_widget .member-4-dropdown-wrapper,
+.member-4-dropdown-wrapper {
+	position: relative !important;
+	display: inline-block !important;
+	margin-left: 2px !important;
+}
+
+/* Caret 'v' Icon */
+.widget-member-4 .member-4-caret,
+.widget_member_4_widget .member-4-caret,
+.member-4-caret {
 	font-size: 13px !important;
 	color: #333333 !important;
 	font-weight: bold !important;
-	margin-left: 2px !important;
 	cursor: pointer !important;
-	padding: 2px 4px !important;
 	user-select: none !important;
+	padding: 2px 4px !important;
+	display: inline-block !important;
 	transition: color 0.15s ease !important;
 }
 
-.widget-test-4-dropdown-wrapper:hover .widget-test-4-caret,
-.widget-test-4-dropdown-wrapper:focus-within .widget-test-4-caret {
+.member-4-dropdown-wrapper:hover .member-4-caret {
 	color: #0066cc !important;
 }
 
-/* Khung chứa Menu xổ xuống (Dropdown Menu) */
-.widget-test-4-dropdown-menu {
+/* Dropdown Menu Box - MUST BE HIDDEN BY DEFAULT */
+.widget-member-4 .member-4-dropdown-menu,
+.widget_member_4_widget .member-4-dropdown-menu,
+.member-4-dropdown-menu {
 	display: none !important;
 	position: absolute !important;
 	right: 0 !important;
 	top: 100% !important;
 	background-color: #ffffff !important;
 	min-width: 160px !important;
-	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15) !important;
 	border: 1px solid #e2e8f0 !important;
 	border-radius: 4px !important;
 	padding: 6px 0 !important;
-	z-index: 9999 !important;
+	z-index: 99999 !important;
 	margin-top: 4px !important;
 }
 
-/* Tự động hiển thị Dropdown Menu khi rê chuột (Hover) hoặc chọn (Focus) vào icon chữ 'v' */
-.widget-test-4-dropdown-wrapper:hover .widget-test-4-dropdown-menu,
-.widget-test-4-dropdown-wrapper:focus-within .widget-test-4-dropdown-menu {
+/* Show Dropdown Menu on Hover or Focus */
+.member-4-dropdown-wrapper:hover .member-4-dropdown-menu,
+.member-4-dropdown-wrapper:focus-within .member-4-dropdown-menu {
 	display: block !important;
 }
 
-/* Đơn vị danh mục bên trong Dropdown Menu */
-.widget-test-4-dropdown-item {
+.widget-member-4 .member-4-dropdown-item,
+.widget_member_4_widget .member-4-dropdown-item,
+.member-4-dropdown-item {
 	display: block !important;
 	padding: 8px 16px !important;
 	color: #333333 !important;
 	text-decoration: none !important;
 	font-size: 14px !important;
 	white-space: nowrap !important;
+	background: #ffffff !important;
 	transition: background-color 0.15s ease, color 0.15s ease !important;
 }
 
-.widget-test-4-dropdown-item:hover {
+.widget-member-4 .member-4-dropdown-item:hover,
+.widget_member_4_widget .member-4-dropdown-item:hover,
+.member-4-dropdown-item:hover {
 	background-color: #f5f7fa !important;
 	color: #0066cc !important;
 }
 
-/* Khung chứa danh sách bài viết - Có đường viền dọc bên trái theo hình mẫu */
-.widget-test-4-body {
-	border-left: 1px solid #e2e8f0 !important;
+/* Main Body - Left Vertical Border Line */
+.widget-member-4 .member-4-body,
+.widget_member_4_widget .member-4-body,
+.member-4-body {
+	border-left: 1px solid #b0c4be !important;
 	padding-left: 20px !important;
 	box-sizing: border-box !important;
+	margin-left: 2px !important;
+	width: 100% !important;
 }
 
-/* Danh sách bài viết không có bullet point */
-.widget-test-4-list {
+/* Unordered List Reset */
+.widget-member-4 .member-4-list,
+.widget_member_4_widget .member-4-list,
+.member-4-list {
 	list-style: none !important;
 	margin: 0 !important;
 	padding: 0 !important;
 }
 
-/* Từng bài viết có đường kẻ mờ phân cách bên dưới */
-.widget-test-4-item {
+/* Post Item - Horizontal Divider Line */
+.widget-member-4 .member-4-item,
+.widget_member_4_widget .member-4-item,
+.member-4-item {
+	display: block !important;
 	padding: 14px 0 !important;
-	border-bottom: 1px solid #f0f0f0 !important;
+	border-bottom: 1px solid #d0ded9 !important;
 	margin: 0 !important;
+	list-style-type: none !important;
 }
 
-.widget-test-4-item:last-child {
-	border-bottom: 1px solid #f0f0f0 !important;
+.widget-member-4 .member-4-item:last-child,
+.widget_member_4_widget .member-4-item:last-child,
+.member-4-item:last-child {
+	border-bottom: 1px solid #d0ded9 !important;
 }
 
-/* Kiểu chữ tiêu đề bài viết - Chuẩn hóa Tiếng Việt, không lỗi font */
-.widget-test-4-title {
+/* Post Title Link Styling */
+.widget-member-4 .member-4-title,
+.widget_member_4_widget .member-4-title,
+.member-4-title,
+.member-4-item a {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
 	font-size: 16px !important;
 	line-height: 1.55 !important;
@@ -6929,11 +6990,18 @@ ol.comment-list li.comment {
 	font-weight: 400 !important;
 	text-transform: none !important;
 	letter-spacing: normal !important;
+	background: transparent !important;
+	box-shadow: none !important;
 }
 
-.widget-test-4-title:hover {
+.widget-member-4 .member-4-title:hover,
+.widget_member_4_widget .member-4-title:hover,
+.member-4-title:hover,
+.member-4-item a:hover {
 	color: #0056b3 !important;
+	text-decoration: underline !important;
 }
+
 
 
 

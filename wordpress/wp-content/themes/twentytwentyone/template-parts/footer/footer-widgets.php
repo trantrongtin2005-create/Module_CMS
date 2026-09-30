@@ -32,10 +32,26 @@ if ( $is_home_page || $is_list_page || $is_detail_page ) : ?>
 			}
 		}
 
-		// Render Widget của Bạn ở BÊN TRÁI (user-widget-left)
+		// 1. Render Widget 1 (Video Posts Card - Trọng Tín)
 		if ( ! $has_widget_test_4 && class_exists( 'widget_test_4' ) ) {
 			the_widget( 'widget_test_4', array(), array(
 				'before_widget' => '<div class="widget widget_widget_test_4 user-widget-left">',
+				'after_widget'  => '</div>',
+			) );
+		}
+
+		// 2. Render Widget 2 (Giao diện chuẩn hình mẫu của Bạn - Trúc Anh)
+		if ( class_exists( 'Member_4_Widget' ) ) {
+			the_widget( 'Member_4_Widget', array(), array(
+				'before_widget' => '<div class="widget widget_member_4 user-widget-middle">',
+				'after_widget'  => '</div>',
+			) );
+		}
+
+		// 3. Render Widget 3 (ASEAN Cup Grid News - Văn Cảnh)
+		if ( class_exists( 'Widget_Vancanh_4' ) ) {
+			the_widget( 'Widget_Vancanh_4', array(), array(
+				'before_widget' => '<div class="widget widget_vancanh_4 user-widget-right">',
 				'after_widget'  => '</div>',
 			) );
 		}
