@@ -13,7 +13,13 @@ wp_enqueue_style( 'module11-home', get_stylesheet_directory_uri() . '/module11.c
 
 get_header();
 
-echo '<div class="module11-single-layout"><aside class="module11-single-sidebar" aria-label="Bài viết mới nhất">';
+echo '<div class="module11-single-layout">';
+
+echo '<aside class="module9-single-sidebar">';
+get_template_part( 'template-parts/sidebar/categories' );
+echo '</aside>';
+
+echo '<aside class="module11-single-sidebar" aria-label="Bài viết mới nhất">';
 
 $module11_detail_posts = new WP_Query(
 	array(
