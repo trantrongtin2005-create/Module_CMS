@@ -25,10 +25,6 @@ if ( $is_home_page || $is_list_page || $is_detail_page ) : ?>
 			dynamic_sidebar( 'sidebar-1' );
 		}
 
-		// Đảm bảo widget_test_4 luôn hiển thị kể cả khi chưa được gán qua WP Admin
-		if ( ! is_active_widget( false, false, 'widget_test_4' ) ) {
-			the_widget( 'widget_test_4' );
-		}
 		?>
 	</aside><!-- .widget-area -->
 
