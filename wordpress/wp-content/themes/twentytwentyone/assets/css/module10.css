@@ -1,0 +1,110 @@
+/**
+ * ============================================================
+ * MODULE 10: RECENT POSTS SIDEBAR (Khung tin tức bên phải trang chi tiết)
+ * ============================================================
+ */
+
+.module10-single-sidebar,
+.module11-single-sidebar {
+    width: 100%;
+    justify-self: end;
+}
+
+.module10-detail-news,
+.module11-detail-news {
+    width: 100%;
+    overflow: hidden;
+    background: #58bcc0;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.module10-detail-news-list,
+.module11-detail-news-list {
+    padding: 12px 14px 8px;
+}
+
+.module10-detail-news-item,
+.module11-detail-news-item {
+    display: grid;
+    grid-template-columns: 58px minmax(0, 1fr);
+    gap: 10px;
+    align-items: center;
+    min-height: 48px;
+}
+
+.module10-detail-news-item > *,
+.module11-detail-news-item > * {
+    min-width: 0;
+}
+
+.module10-detail-news-item time,
+.module11-detail-news-item time {
+    display: grid;
+    grid-template-columns: 30px 20px;
+    grid-template-rows: 20px 15px;
+    justify-self: end;
+    color: #fff;
+    line-height: 1;
+    text-align: right;
+}
+
+.module10-detail-news-item time strong,
+.module11-detail-news-item time strong {
+    grid-row: 1 / 3;
+    align-self: center;
+    font-size: .95rem;
+    font-weight: 400;
+}
+
+.module10-detail-news-item time span,
+.module11-detail-news-item time span,
+.module10-detail-news-item time small,
+.module11-detail-news-item time small {
+    font-size: .95rem;
+    font-weight: 400;
+}
+
+.module10-detail-news-item time span,
+.module11-detail-news-item time span {
+    align-self: end;
+}
+
+.module10-detail-news-item time small,
+.module11-detail-news-item time small {
+    align-self: start;
+}
+
+.module10-detail-news-item a,
+.module11-detail-news-item a {
+    display: block;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    color: #fff;
+    font-size: .76rem;
+    line-height: 1.35;
+    text-decoration: none;
+}
+
+.module10-detail-news-item a:hover,
+.module11-detail-news-item a:hover {
+    text-decoration: underline;
+}
+
+.module10-detail-news-more,
+.module11-detail-news-more {
+    display: block;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, .12);
+    color: #fff;
+    font-size: .72rem;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+}
+
+.module10-detail-news-more:hover,
+.module11-detail-news-more:hover {
+    background: rgba(255, 255, 255, .2);
+}
