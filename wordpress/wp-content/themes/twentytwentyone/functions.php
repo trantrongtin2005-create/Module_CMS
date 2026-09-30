@@ -484,6 +484,7 @@ function twenty_twenty_one_scripts() {
 		);
 	}
 }
+
 add_action( 'wp_enqueue_scripts', 'twenty_twenty_one_scripts' );
 
 /**
@@ -668,3 +669,5 @@ if ( ! function_exists( 'wp_get_list_item_separator' ) ) :
 		return __( ', ', 'twentytwentyone' );
 	}
 endif;
+
+require_once get_template_directory() . '/inc/widget-test-4.php';
