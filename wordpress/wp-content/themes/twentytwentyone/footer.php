@@ -18,6 +18,13 @@
 
 	<?php get_template_part( 'template-parts/footer/footer-widgets' ); ?>
 
+	<?php
+	// Display widget_test_4 on homepage, list page, detail page above Footer
+	if ( is_home() || is_front_page() || is_archive() || is_search() || is_single() || is_page() ) {
+		get_template_part( 'template-parts/widgets/widget-test-4' );
+	}
+	?>
+
 	<footer id="colophon" class="site-footer">
 
 			<!-- ===================== MODULE 3: FOOTER ===================== -->
