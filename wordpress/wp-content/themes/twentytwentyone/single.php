@@ -9,7 +9,8 @@
  * @since Twenty Twenty-One 1.0
  */
 
-wp_enqueue_style( 'module11-home', get_stylesheet_directory_uri() . '/module11.css', array(), '1.2.0' );
+wp_enqueue_style( 'module11-home', get_stylesheet_directory_uri() . '/module11.css', array(), '1.3.0' );
+wp_enqueue_style( 'module10-style', get_stylesheet_directory_uri() . '/assets/css/module10.css', array(), '1.0.0' );
 
 get_header();
 
@@ -46,30 +47,8 @@ while ( have_posts() ) :
 	}
 endwhile; // End of the loop.
 
-echo '</main><aside class="module11-single-sidebar" aria-label="Recent posts">';
-$module11_detail_posts = new WP_Query(
-	array(
-		'post_type'           => 'post',
-		'post_status'         => 'publish',
-		'posts_per_page'      => 3,
-		'ignore_sticky_posts' => true,
-		'orderby'             => 'date',
-		'order'               => 'DESC',
-	)
-);
-
-if ( $module11_detail_posts->have_posts() ) {
-	echo '<section class="module11-detail-news"><div class="module11-detail-news-list">';
-	while ( $module11_detail_posts->have_posts() ) {
-		$module11_detail_posts->the_post();
-		echo '<article class="module11-detail-news-item">';
-		echo '<time datetime="' . esc_attr( get_the_date( 'c' ) ) . '"><strong>' . esc_html( get_the_date( 'd' ) ) . '</strong><span>' . esc_html( get_the_date( 'm' ) ) . '</span><small>' . esc_html( get_the_date( 'y' ) ) . '</small></time>';
-		echo '<a href="' . esc_url( get_permalink() ) . '">' . esc_html( get_the_title() ) . '</a>';
-		echo '</article>';
-	}
-	echo '</div><a class="module11-detail-news-more" href="' . esc_url( home_url( '/' ) ) . '">XEM TẤT CẢ TIN TỨC</a></section>';
-}
-wp_reset_postdata();
+echo '</main><aside class="module10-single-sidebar module11-single-sidebar" aria-label="Recent posts">';
+get_template_part( 'template-parts/sidebar/module10' );
 echo '</aside></div>';
 
 get_footer();
