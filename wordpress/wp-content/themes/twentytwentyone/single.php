@@ -9,7 +9,7 @@
  * @since Twenty Twenty-One 1.0
  */
 
-wp_enqueue_style( 'module11-home', get_stylesheet_directory_uri() . '/module11.css', array(), '1.2.0' );
+wp_enqueue_style( 'module11-home', get_stylesheet_directory_uri() . '/module11.css', array(), '1.3.0' );
 wp_enqueue_style( 'module10-style', get_stylesheet_directory_uri() . '/assets/css/module10.css', array(), '1.0.0' );
 
 get_header();
