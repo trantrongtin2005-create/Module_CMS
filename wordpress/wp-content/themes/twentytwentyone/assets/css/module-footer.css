@@ -4,9 +4,10 @@
  * ============================================================
  */
 
-/* ── Hide the original TwentyTwentyOne footer navigation and site-info ── */
+/* ── Hide the original TwentyTwentyOne widget-area and site-info ── */
 .site-footer .footer-navigation,
-.site-footer .site-info {
+.site-footer .site-info,
+.widget-area {
     display: none !important;
 }
 
