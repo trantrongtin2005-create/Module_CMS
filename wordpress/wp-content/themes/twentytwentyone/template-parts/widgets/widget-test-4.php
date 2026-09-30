@@ -131,7 +131,8 @@ if ( ! empty( $widget_4_posts ) ) {
 }
 ?>
 
-<div id="widget_test_4" class="widget-test-4-container">
+<div class="widget-member-4">
+<div id="member_4_widget_content" class="widget-test-4-container">
     <!-- Top Decorative Line -->
     <div class="widget-test-4-top-bar"></div>
 
@@ -223,4 +224,5 @@ if ( ! empty( $widget_4_posts ) ) {
             <?php endforeach; ?>
         </div>
     </div>
+</div>
 </div>

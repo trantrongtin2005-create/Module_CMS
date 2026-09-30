@@ -484,6 +484,7 @@ function twenty_twenty_one_scripts() {
 		);
 	}
 }
+
 add_action( 'wp_enqueue_scripts', 'twenty_twenty_one_scripts' );
 
 /**
@@ -670,8 +671,6 @@ if ( ! function_exists( 'wp_get_list_item_separator' ) ) :
 endif;
 
 // ==========================================================================
-// TÍNH ĐIỂM LẦN 4 MÔN CMS: Nạp và đăng ký Widget Test 4 (widget_test_4)
+// Load Member 4's isolated widget implementation.
 // ==========================================================================
 require_once get_template_directory() . '/inc/widget-test-4.php';
-
-
