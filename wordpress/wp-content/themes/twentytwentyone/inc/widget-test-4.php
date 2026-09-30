@@ -1,167 +1,201 @@
 <?php
 /**
- * Thể hiện chức năng Widget Test 4 (Tính điểm lần 4 môn CMS)
+ * Widget Name: widget_test_4
+ * Description: Hiển thị danh sách video/bài viết ngẫu nhiên theo giao diện mẫu
  * 
- * Tên Widget: widget_test_4
- * Vị trí hiển thị: Phía trên Footer (Trang chủ, Trang danh sách, Trang chi tiết)
- * Chức năng: Hiển thị 5 bài viết ngẫu nhiên và thanh danh mục động có menu xổ xuống (dropdown) tại chữ 'v'
+ * @package WordPress
+ * @subpackage Twenty_Twenty_One
  */
 
-if ( ! class_exists( 'widget_test_4' ) ) {
-	// Khai báo lớp widget_test_4 kế thừa từ lớp WP_Widget của WordPress
-	class widget_test_4 extends WP_Widget {
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
-		/**
-		 * Khởi tạo Widget với ID và tên là 'widget_test_4'
-		 */
-		public function __construct() {
-			parent::__construct(
-				'widget_test_4', // ID cố định của Widget
-				__( 'widget_test_4', 'twentytwentyone' ), // Tên hiển thị trong Admin
-				array(
-					'description' => __( 'Widget Test 4 - Hiển thị 5 bài viết ngẫu nhiên phía trên Footer', 'twentytwentyone' ),
-				)
-			);
+class widget_test_4 extends WP_Widget {
+
+	/**
+	 * Khởi tạo widget_test_4
+	 */
+	public function __construct() {
+		parent::__construct(
+			'widget_test_4', // Base ID
+			__( 'widget_test_4', 'twentytwentyone' ), // Tên hiển thị trong WP Admin
+			array(
+				'classname'                   => 'widget_test_4',
+				'description'                 => __( 'Widget Test 4: Danh sách video tin tức thể thao ngẫu nhiên (random)', 'twentytwentyone' ),
+				'customize_selective_refresh' => true,
+			)
+		);
+	}
+
+	/**
+	 * Hiển thị widget ở giao diện người dùng (Frontend)
+	 *
+	 * @param array $args     Widget arguments.
+	 * @param array $instance Saved values from database.
+	 */
+	public function widget( $args, $instance ) {
+		$title    = ! empty( $instance['title'] ) ? $instance['title'] : '';
+		$number   = ! empty( $instance['number'] ) ? absint( $instance['number'] ) : 5;
+		$category = ! empty( $instance['category'] ) ? absint( $instance['category'] ) : 0;
+
+		// Query random posts theo yêu cầu: "random, không SV nào giống nhau"
+		$query_args = array(
+			'post_type'           => 'post',
+			'post_status'         => 'publish',
+			'posts_per_page'      => $number,
+			'orderby'             => 'rand',
+			'ignore_sticky_posts' => true,
+			'no_found_rows'       => true,
+		);
+
+		if ( $category > 0 ) {
+			$query_args['cat'] = $category;
 		}
 
-		/**
-		 * Xử lý hiển thị Giao diện Widget ở phía Frontend
-		 */
-		public function widget( $args, $instance ) {
-			echo $args['before_widget'] ?? '<div class="widget_test_4">';
+		$random_query = new WP_Query( $query_args );
 
-			// --- 1. LẤY DANH SÁCH DANH MỤC (CATEGORIES) TỪ DATABASE ---
-			$all_categories = get_categories( array(
-				'hide_empty' => false,
-				'orderby'    => 'name',
-				'order'      => 'ASC',
-				'exclude'    => array( 1 ), // Bỏ qua danh mục mặc định 'Uncategorized' nếu có danh mục khác
-			) );
+		echo $args['before_widget'];
 
-			// Nếu không tìm thấy danh mục nào khác, lấy toàn bộ danh mục hiện có
-			if ( empty( $all_categories ) ) {
-				$all_categories = get_categories( array( 'hide_empty' => false ) );
-			}
+		if ( ! empty( $title ) ) {
+			echo $args['before_title'] . apply_filters( 'widget_title', $title ) . $args['after_title'];
+		}
+		?>
+		<div class="widget-test-4-card">
+			<div class="widget-test-4-scrollable">
+				<?php
+				if ( $random_query->have_posts() ) :
+					$item_index = 0;
+					while ( $random_query->have_posts() ) :
+						$random_query->the_post();
+						$post_id   = get_the_ID();
+						$permalink = get_permalink();
+						$title_txt = get_the_title();
 
-			// Tách 3 danh mục đầu tiên để hiển thị ngang, các danh mục còn lại đưa vào Menu xổ xuống (Dropdown)
-			$top_cats  = array_slice( $all_categories, 0, 3 );
-			$more_cats = array_slice( $all_categories, 3 );
+						// Lấy badge hoặc duration
+						$badge = get_post_meta( $post_id, '_video_badge', true );
+						if ( empty( $badge ) ) {
+							$badge = get_post_meta( $post_id, '_video_duration', true );
+						}
+						// Nếu bài viết chưa có meta, tự động tạo badge trực quan:
+						// Bài đầu tiên hoặc một số bài có thể là "Đang phát", còn lại là thời lượng video "mm:ss"
+						if ( empty( $badge ) ) {
+							if ( $item_index === 0 && ( $post_id % 3 === 0 || $post_id % 2 === 0 ) ) {
+								$badge = 'Đang phát';
+							} else {
+								$minutes = str_pad( ( ( $post_id * 3 ) % 4 ) + 1, 2, '0', STR_PAD_LEFT );
+								$seconds = str_pad( ( $post_id * 19 ) % 60, 2, '0', STR_PAD_LEFT );
+								$badge   = $minutes . ':' . $seconds;
+							}
+						}
 
-			// --- 2. TRUY VẤN 5 BÀI VIẾT NGẪU NHIÊN (RANDOM POSTS) ---
-			$query_args = array(
-				'post_type'      => 'post',
-				'post_status'    => 'publish',
-				'posts_per_page' => 5,      // Lấy đúng 5 bài viết
-				'orderby'        => 'rand',   // Sắp xếp ngẫu nhiên để không sinh viên nào giống sinh viên nào
-			);
-
-			$random_query = new WP_Query( $query_args );
-			?>
-			<!-- Khung chứa Widget Test 4 -->
-			<div class="widget-test-4-container">
-				
-				<!-- Thanh Navigation chứa 3 danh mục đầu + Menu xổ xuống tại chữ 'v' (Góc trên bên phải) -->
-				<div class="widget-test-4-header">
-					<?php if ( ! empty( $top_cats ) ) : ?>
-						<?php foreach ( $top_cats as $index => $cat ) : ?>
-							<?php if ( $index > 0 ) : ?>
-								<span class="widget-test-4-sep">|</span>
-							<?php endif; ?>
-							<a href="<?php echo esc_url( get_category_link( $cat->term_id ) ); ?>" class="widget-test-4-nav-link">
-								<?php echo esc_html( $cat->name ); ?>
-							</a>
-						<?php endforeach; ?>
-					<?php else : ?>
-						<!-- Dự phòng nếu chưa có danh mục trong database -->
-						<a href="#" class="widget-test-4-nav-link">Kết nối</a>
-						<span class="widget-test-4-sep">|</span>
-						<a href="#" class="widget-test-4-nav-link">Phim</a>
-						<span class="widget-test-4-sep">|</span>
-						<a href="#" class="widget-test-4-nav-link">Truyền hình</a>
-					<?php endif; ?>
-
-					<span class="widget-test-4-sep">|</span>
-
-					<!-- Menu sổ xuống (Dropdown Menu) khi rê chuột/bấm vào icon chữ 'v' chứa các danh mục còn lại -->
-					<div class="widget-test-4-dropdown-wrapper">
-						<span class="widget-test-4-caret" tabindex="0" title="Click hoặc di chuột xem thêm danh mục">&#x2228;</span>
-						<div class="widget-test-4-dropdown-menu">
-							<?php if ( ! empty( $more_cats ) ) : ?>
-								<?php foreach ( $more_cats as $m_cat ) : ?>
-									<a href="<?php echo esc_url( get_category_link( $m_cat->term_id ) ); ?>" class="widget-test-4-dropdown-item">
-										<?php echo esc_html( $m_cat->name ); ?>
-									</a>
-								<?php endforeach; ?>
-							<?php else : ?>
-								<!-- Dự phòng danh mục bổ sung -->
-								<a href="#" class="widget-test-4-dropdown-item">Giải trí</a>
-								<a href="#" class="widget-test-4-dropdown-item">Âm nhạc</a>
-								<a href="#" class="widget-test-4-dropdown-item">Thời sự</a>
-							<?php endif; ?>
-						</div>
-					</div>
-				</div>
-
-				<!-- Khung hiển thị danh sách bài viết với đường kẻ dọc bên trái -->
-				<div class="widget-test-4-body">
-					<ul class="widget-test-4-list">
-						<?php if ( $random_query->have_posts() ) : ?>
-							<?php while ( $random_query->have_posts() ) : $random_query->the_post(); ?>
-								<li class="widget-test-4-item">
-									<a href="<?php the_permalink(); ?>" class="widget-test-4-title">
-										<?php
-										// Chuẩn hóa ký tự tiếng Việt dạng UTF-8 NFC để tránh lỗi tách dấu hoặc khoảng trắng dấu
-										$post_title = get_the_title();
-										if ( class_exists( 'Normalizer' ) ) {
-											$post_title = Normalizer::normalize( $post_title, Normalizer::FORM_C );
-										}
-										echo esc_html( $post_title );
-										?>
-									</a>
-								</li>
-							<?php endwhile; ?>
-							<?php wp_reset_postdata(); ?>
-						<?php else : ?>
-							<li class="widget-test-4-item">
-								<span class="widget-test-4-title">Không có bài viết nào.</span>
-							</li>
-						<?php endif; ?>
-					</ul>
-				</div>
+						// Lấy hình ảnh đại diện (thumbnail)
+						$thumb_html = '';
+						if ( has_post_thumbnail( $post_id ) ) {
+							$thumb_html = get_the_post_thumbnail(
+								$post_id,
+								'medium',
+								array(
+									'class' => 'widget-test-4-img',
+									'alt'   => esc_attr( $title_txt ),
+								)
+							);
+						} else {
+							// Fallback hình ảnh nếu bài viết không có thumbnail
+							$fallback_src = get_template_directory_uri() . '/assets/images/default-thumb.jpg';
+							$thumb_html   = '<img src="' . esc_url( $fallback_src ) . '" alt="' . esc_attr( $title_txt ) . '" class="widget-test-4-img" />';
+						}
+						?>
+						<a href="<?php echo esc_url( $permalink ); ?>" class="widget-test-4-item" title="<?php echo esc_attr( $title_txt ); ?>">
+							<div class="widget-test-4-thumb-wrapper">
+								<?php echo $thumb_html; ?>
+								<?php if ( $badge === 'Đang phát' ) : ?>
+									<div class="widget-test-4-badge-live">
+										<span><?php esc_html_e( 'Đang phát', 'twentytwentyone' ); ?></span>
+									</div>
+								<?php else : ?>
+									<div class="widget-test-4-badge-time">
+										<span><?php echo esc_html( $badge ); ?></span>
+									</div>
+								<?php endif; ?>
+							</div>
+							<div class="widget-test-4-title-wrapper">
+								<h4 class="widget-test-4-item-title"><?php echo esc_html( $title_txt ); ?></h4>
+							</div>
+						</a>
+						<?php
+						$item_index++;
+					endwhile;
+					wp_reset_postdata();
+				else :
+					?>
+					<p class="widget-test-4-empty"><?php esc_html_e( 'Chưa có bài viết nào.', 'twentytwentyone' ); ?></p>
+				<?php endif; ?>
 			</div>
-			<?php
+		</div>
+		<?php
+		echo $args['after_widget'];
+	}
 
-			echo $args['after_widget'] ?? '</div>';
-		}
+	/**
+	 * Form quản trị cấu hình widget trong WP Admin
+	 *
+	 * @param array $instance Current settings.
+	 */
+	public function form( $instance ) {
+		$title    = ! empty( $instance['title'] ) ? $instance['title'] : '';
+		$number   = ! empty( $instance['number'] ) ? absint( $instance['number'] ) : 5;
+		$category = ! empty( $instance['category'] ) ? absint( $instance['category'] ) : 0;
+		$categories = get_categories( array( 'hide_empty' => false ) );
+		?>
+		<p>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>">
+				<?php esc_html_e( 'Tiêu đề Widget:', 'twentytwentyone' ); ?>
+			</label>
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" placeholder="Để trống nếu không muốn hiển thị tiêu đề" />
+		</p>
+		<p>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'number' ) ); ?>">
+				<?php esc_html_e( 'Số lượng bài hiển thị:', 'twentytwentyone' ); ?>
+			</label>
+			<input class="tiny-text" id="<?php echo esc_attr( $this->get_field_id( 'number' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'number' ) ); ?>" type="number" step="1" min="1" max="20" value="<?php echo esc_attr( $number ); ?>" size="3" />
+		</p>
+		<p>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'category' ) ); ?>">
+				<?php esc_html_e( 'Chọn chuyên mục (Tùy chọn):', 'twentytwentyone' ); ?>
+			</label>
+			<select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'category' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'category' ) ); ?>">
+				<option value="0" <?php selected( $category, 0 ); ?>><?php esc_html_e( '— Tất cả chuyên mục (Random) —', 'twentytwentyone' ); ?></option>
+				<?php foreach ( $categories as $cat ) : ?>
+					<option value="<?php echo esc_attr( $cat->term_id ); ?>" <?php selected( $category, $cat->term_id ); ?>>
+						<?php echo esc_html( $cat->name ); ?> (<?php echo esc_html( $cat->count ); ?>)
+					</option>
+				<?php endforeach; ?>
+			</select>
+		</p>
+		<?php
+	}
 
-		/**
-		 * Form cấu hình Widget trong trang quản trị Admin
-		 */
-		public function form( $instance ) {
-			$title = ! empty( $instance['title'] ) ? $instance['title'] : 'widget_test_4';
-			?>
-			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Tiêu đề Widget:' ); ?></label>
-				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
-			</p>
-			<?php
-		}
-
-		/**
-		 * Cập nhật cấu hình Widget
-		 */
-		public function update( $new_instance, $old_instance ) {
-			$instance          = array();
-			$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? sanitize_text_field( $new_instance['title'] ) : '';
-			return $instance;
-		}
+	/**
+	 * Cập nhật cấu hình widget khi lưu trong WP Admin
+	 *
+	 * @param array $new_instance New settings.
+	 * @param array $old_instance Old settings.
+	 * @return array
+	 */
+	public function update( $new_instance, $old_instance ) {
+		$instance             = array();
+		$instance['title']    = ( ! empty( $new_instance['title'] ) ) ? sanitize_text_field( $new_instance['title'] ) : '';
+		$instance['number']   = ( ! empty( $new_instance['number'] ) ) ? absint( $new_instance['number'] ) : 5;
+		$instance['category'] = ( ! empty( $new_instance['category'] ) ) ? absint( $new_instance['category'] ) : 0;
+		return $instance;
 	}
 }
 
 /**
- * Đăng ký Widget widget_test_4 với hệ thống WordPress qua Action 'widgets_init'
+ * Đăng ký widget_test_4 với WordPress
  */
-function register_widget_test_4() {
+function register_custom_widget_test_4() {
 	register_widget( 'widget_test_4' );
 }
-add_action( 'widgets_init', 'register_widget_test_4' );
+add_action( 'widgets_init', 'register_custom_widget_test_4' );
