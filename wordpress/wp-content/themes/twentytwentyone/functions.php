@@ -668,3 +668,10 @@ if ( ! function_exists( 'wp_get_list_item_separator' ) ) :
 		return __( ', ', 'twentytwentyone' );
 	}
 endif;
+
+// ==========================================================================
+// TÍNH ĐIỂM LẦN 4 MÔN CMS: Nạp và đăng ký Widget Test 4 (widget_test_4)
+// ==========================================================================
+require_once get_template_directory() . '/inc/widget-test-4.php';
+
+
