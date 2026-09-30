@@ -397,6 +397,9 @@ function twenty_twenty_one_scripts() {
 	// The standard stylesheet.
 	wp_enqueue_style( 'twenty-twenty-one-style', get_template_directory_uri() . '/style.css', array(), wp_get_theme()->get( 'Version' ) );
 
+	// Widget Test 4 styles.
+	wp_enqueue_style( 'widget-test-4-style', get_template_directory_uri() . '/assets/css/widget-test-4.css', array(), '1.0.0' );
+
 	// RTL styles.
 	wp_style_add_data( 'twenty-twenty-one-style', 'rtl', 'replace' );
 
