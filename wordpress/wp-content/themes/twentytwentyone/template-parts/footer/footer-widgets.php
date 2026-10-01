@@ -33,8 +33,8 @@ if ( $is_home_page || $is_list_page || $is_detail_page ) : ?>
 		}
 
 		// 1. Render Widget 1 (Video Posts Card - Trọng Tín)
-		if ( ! $has_widget_test_4 && class_exists( 'widget_test_4' ) ) {
-			the_widget( 'widget_test_4', array(), array(
+		if ( ! $has_widget_test_4 && class_exists( 'Widget_Test_4' ) ) {
+			the_widget( 'Widget_Test_4', array(), array(
 				'before_widget' => '<div class="widget widget_widget_test_4 user-widget-left">',
 				'after_widget'  => '</div>',
 			) );

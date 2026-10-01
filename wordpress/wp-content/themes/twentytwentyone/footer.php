@@ -17,15 +17,11 @@
 	</div><!-- #content -->
 
 	<!-- ===================== WIDGET TEST 4 (ABOVE FOOTER) ===================== -->
-	<div id="widget-test-4-area" class="widget-test-4-area-wrapper alignwide">
-		<?php
-		if ( is_active_sidebar( 'widget-test-4-sidebar' ) ) {
-			dynamic_sidebar( 'widget-test-4-sidebar' );
-		} else {
-			the_widget( 'Widget_Test_4' );
-		}
-		?>
-	</div>
+	<?php if ( is_active_sidebar( 'widget-test-4-sidebar' ) ) : ?>
+		<div id="widget-test-4-area" class="widget-test-4-area-wrapper alignwide">
+			<?php dynamic_sidebar( 'widget-test-4-sidebar' ); ?>
+		</div>
+	<?php endif; ?>
 	<!-- ===================== END WIDGET TEST 4 ===================== -->
 
 	<?php get_template_part( 'template-parts/footer/footer-widgets' ); ?>

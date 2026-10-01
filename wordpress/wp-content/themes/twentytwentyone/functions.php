@@ -572,9 +572,6 @@ require get_template_directory() . '/inc/block-styles.php';
 require_once get_template_directory() . '/classes/class-twenty-twenty-one-dark-mode.php';
 new Twenty_Twenty_One_Dark_Mode();
 
-// Widget Test 4 (Above Footer Category News).
-require_once get_template_directory() . '/inc/widget-test-4.php';
-
 
 /**
  * Enqueues scripts for the customizer preview.

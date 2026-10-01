@@ -1,16 +1,15 @@
 /**
  * ============================================================
- * WIDGET TEST 4: RANDOM VIDEO / SPORTS POSTS
- * Hiển thị phía trên Footer (Trang chủ, Trang danh sách, Trang chi tiết)
+ * WIDGET TEST 4: CATEGORY NEWS CARD LAYOUT
+ * Matching exact mockup design from user screenshot
  * ============================================================
  */
 
-/* Vùng hiển thị widget phía trên Footer - Bố cục cân đối gần nhau không bị xa nhau */
 .footer-widget-test-4-area,
 aside.widget-area.footer-widget-test-4-area {
     display: flex !important;
     flex-direction: column !important;
-    align-items: center !important;
+    align-items: stretch !important;
     gap: 25px !important;
     width: 100% !important;
     max-width: 1100px !important;
@@ -20,224 +19,195 @@ aside.widget-area.footer-widget-test-4-area {
     clear: both !important;
 }
 
-/* Các thẻ con đại diện cho từng Widget */
-.footer-widget-test-4-area > .widget,
-.footer-widget-test-4-area > section,
-.footer-widget-test-4-area > div,
-.footer-widget-test-4-area .widget_widget_test_4,
-.footer-widget-test-4-area .user-widget-wrapper {
-    display: block !important;
-    margin: 0 0 15px !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-}
-
-.footer-widget-test-4-area > .user-widget-left,
-.footer-widget-test-4-area > .widget_widget_test_4 {
-    order: 1 !important;
-}
-
-.footer-widget-test-4-area > .user-widget-middle,
-.footer-widget-test-4-area > .widget_member_4 {
-    order: 2 !important;
-}
-
-.footer-widget-test-4-area > .user-widget-right,
-.footer-widget-test-4-area > .widget_vancanh_4 {
-    order: 3 !important;
-}
-
-/* Card bao quanh widget_test_4 */
+/* Card container */
 .widget-test-4-card {
     background-color: #ffffff !important;
     border: 1px solid #e2e8f0 !important;
-    border-radius: 4px !important;
-    padding: 16px 18px 16px 20px !important;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
-    max-width: 440px !important;
-    min-width: 340px !important;
+    border-radius: 8px !important;
+    padding: 20px 24px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    max-width: 100% !important;
     width: 100% !important;
     margin: 0 auto !important;
     box-sizing: border-box !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
 }
 
-/* Tiêu đề chính của widget nếu có */
-.widget_widget_test_4 .widget-title,
-.widget-test-4-main-title {
-    font-size: 18px;
-    font-weight: 700;
-    color: #1e293b;
-    margin: 0 0 12px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #e2e8f0;
-    font-family: Arial, sans-serif;
-}
-
-/* Khung cuộn danh sách (theo hình mẫu có thanh scrollbar mỏng ở bên phải) */
-.widget-test-4-scrollable {
-    max-height: 470px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding-right: 6px;
-    scrollbar-width: thin;
-    scrollbar-color: #bcbcbc transparent;
-}
-
-/* Tùy chỉnh thanh cuộn Webkit */
-.widget-test-4-scrollable::-webkit-scrollbar {
-    width: 4px;
-}
-
-.widget-test-4-scrollable::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.widget-test-4-scrollable::-webkit-scrollbar-thumb {
-    background: #bcbcbc;
-    border-radius: 4px;
-}
-
-.widget-test-4-scrollable::-webkit-scrollbar-thumb:hover {
-    background: #999999;
-}
-
-/* Từng dòng bài viết / video item */
-.widget-test-4-card .widget-test-4-item {
+/* Header */
+.widget-test-4-header {
     display: flex !important;
-    align-items: center;
-    gap: 16px;
-    padding: 12px 0;
-    border-bottom: 1px solid #ededed;
+    align-items: center !important;
+    margin-bottom: 0 !important;
+}
+
+.widget-test-4-red-bar {
+    display: inline-block !important;
+    width: 3px !important;
+    height: 18px !important;
+    background-color: #c8102e !important;
+    margin-right: 10px !important;
+    border-radius: 1px !important;
+}
+
+.widget-test-4-cat-name {
+    margin: 0 !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #111827 !important;
+    line-height: 1.2 !important;
+}
+
+.widget-test-4-cat-name a {
+    color: #111827 !important;
     text-decoration: none !important;
-    color: inherit !important;
-    transition: background-color 0.2s ease, opacity 0.2s ease;
-    box-sizing: border-box;
 }
 
-.widget-test-4-card .widget-test-4-item:first-child {
-    padding-top: 4px;
+.widget-test-4-cat-name a:hover {
+    color: #c8102e !important;
 }
 
-.widget-test-4-card .widget-test-4-item:last-child {
-    border-bottom: none;
+.widget-test-4-header-line {
+    height: 1px !important;
+    background-color: #e5e7eb !important;
+    margin-top: 12px !important;
+    margin-bottom: 20px !important;
 }
 
-.widget-test-4-card .widget-test-4-item:hover {
-    opacity: 0.85;
+/* Main Top Post */
+.widget-test-4-top-post {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 24px !important;
+    margin-bottom: 0 !important;
 }
 
-/* Khung hình thumbnail bên trái */
 .widget-test-4-thumb-wrapper {
     position: relative !important;
-    flex: 0 0 130px !important;
-    width: 130px !important;
-    min-width: 130px !important;
-    height: 74px !important;
-    border-radius: 2px !important;
+    flex: 0 0 380px !important;
+    width: 380px !important;
+    max-width: 45% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
+    border-radius: 8px !important;
     overflow: hidden !important;
-    background-color: #1a1a1a !important;
+    background-color: #f3f4f6 !important;
 }
 
-/* Hình ảnh thumbnail */
+.widget-test-4-thumb-wrapper a {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
 .widget-test-4-img,
 .widget-test-4-thumb-wrapper img {
     width: 100% !important;
     height: 100% !important;
-    max-width: none !important;
-    max-height: none !important;
     object-fit: cover !important;
     display: block !important;
+    border-radius: 8px !important;
     margin: 0 !important;
     padding: 0 !important;
     border: none !important;
-    transition: transform 0.3s ease;
 }
 
-.widget-test-4-item:hover .widget-test-4-img {
-    transform: scale(1.05);
+.widget-test-4-top-content {
+    flex: 1 1 auto !important;
+    padding-top: 4px !important;
 }
 
-/* Badge "Đang phát" (Live) ở giữa ảnh */
-.widget-test-4-badge-live {
-    position: absolute !important;
-    inset: 0 !important;
+.widget-test-4-top-title {
+    margin: 0 0 10px 0 !important;
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    line-height: 1.4 !important;
+}
+
+.widget-test-4-top-title a {
+    color: #111827 !important;
+    text-decoration: none !important;
+}
+
+.widget-test-4-top-title a:hover {
+    color: #c8102e !important;
+}
+
+.widget-test-4-top-sapo {
+    margin: 0 !important;
+    font-size: 14px !important;
+    color: #6b7280 !important;
+    line-height: 1.5 !important;
+}
+
+/* Horizontal Dotted Divider */
+.widget-test-4-dotted-divider {
+    border-bottom: 1px dotted #cccccc !important;
+    margin: 20px 0 !important;
+    height: 0 !important;
+}
+
+/* Bottom Grid (2 Columns) */
+.widget-test-4-bottom-grid {
     display: flex !important;
     align-items: center !important;
-    justify-content: center !important;
-    background-color: rgba(0, 0, 0, 0.45) !important;
-    color: #ffffff !important;
-    font-size: 13px !important;
-    font-weight: 700 !important;
-    font-family: Arial, Helvetica, sans-serif !important;
-    letter-spacing: 0.3px !important;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9) !important;
-    pointer-events: none !important;
 }
 
-/* Badge thời lượng video ("01:19", "03:14", "03:03", ...) góc dưới bên trái */
-.widget-test-4-badge-time {
-    position: absolute !important;
-    bottom: 6px !important;
-    left: 6px !important;
-    background-color: rgba(0, 0, 0, 0.85) !important;
-    color: #ffffff !important;
-    font-size: 11px !important;
-    font-weight: 700 !important;
-    line-height: 1 !important;
-    padding: 3px 5px !important;
-    border-radius: 2px !important;
-    font-family: Arial, Helvetica, sans-serif !important;
-    letter-spacing: 0.5px !important;
-    pointer-events: none !important;
-}
-
-/* Khung tiêu đề bài viết bên phải */
-.widget-test-4-title-wrapper {
-    flex: 1 1 auto !important;
-    min-width: 140px !important;
+.widget-test-4-col {
+    flex: 1 1 50% !important;
     box-sizing: border-box !important;
 }
 
-/* Tiêu đề bài viết theo font có chân (Serif) theo đúng mẫu ảnh */
-.widget-test-4-item-title {
-    font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
+.widget-test-4-col-left {
+    padding-right: 24px !important;
+    border-right: 1px dotted #cccccc !important;
+}
+
+.widget-test-4-col-right {
+    padding-left: 24px !important;
+}
+
+.widget-test-4-sub-title {
+    margin: 0 !important;
     font-size: 15px !important;
     font-weight: 700 !important;
-    line-height: 1.35 !important;
-    color: #1a1a1a !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    word-break: normal !important;
-    overflow-wrap: break-word !important;
-    white-space: normal !important;
-    transition: color 0.2s ease !important;
+    line-height: 1.4 !important;
 }
 
-.widget-test-4-item:hover .widget-test-4-item-title {
-    color: #0056b3 !important;
+.widget-test-4-sub-title a {
+    color: #111827 !important;
+    text-decoration: none !important;
 }
 
-/* Thông báo khi không có bài */
-.widget-test-4-empty {
-    font-size: 14px;
-    color: #64748b;
-    margin: 10px 0;
-    text-align: center;
+.widget-test-4-sub-title a:hover {
+    color: #c8102e !important;
 }
 
-/* Responsive trên thiết bị nhỏ */
-@media (max-width: 480px) {
-    .widget-test-4-card {
-        padding: 12px 14px;
+/* Responsive */
+@media (max-width: 768px) {
+    .widget-test-4-top-post {
+        flex-direction: column !important;
     }
     
     .widget-test-4-thumb-wrapper {
-        flex: 0 0 100px;
-        width: 100px;
-        height: 60px;
+        flex: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
-    
-    .widget-test-4-item-title {
-        font-size: 14px;
+
+    .widget-test-4-bottom-grid {
+        flex-direction: column !important;
+        gap: 12px !important;
+        align-items: stretch !important;
+    }
+
+    .widget-test-4-col-left {
+        padding-right: 0 !important;
+        border-right: none !important;
+        border-bottom: 1px dotted #cccccc !important;
+        padding-bottom: 12px !important;
+    }
+
+    .widget-test-4-col-right {
+        padding-left: 0 !important;
     }
 }
