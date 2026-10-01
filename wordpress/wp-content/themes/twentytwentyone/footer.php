@@ -18,12 +18,7 @@
 
 	<?php get_template_part( 'template-parts/footer/footer-widgets' ); ?>
 
-	<?php
-	// Display Member 4's widget on homepage, list page, and detail page above the footer.
-	if ( is_home() || is_front_page() || is_archive() || is_search() || is_single() || is_page() ) {
-		the_widget( 'Member_4_Widget' );
-	}
-	?>
+
 
 	<footer id="colophon" class="site-footer">
 

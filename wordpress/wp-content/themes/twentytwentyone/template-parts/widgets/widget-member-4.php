@@ -1,7 +1,7 @@
 <?php
 /**
- * Widget Test 4 Component
- * Displays category navigation and list of posts matching screenshot design.
+ * Member 4 Component (Giao diện chuẩn hình mẫu)
+ * Namespace riêng biệt: member-4-* (Không trùng hay đè với bất kỳ Widget nào khác)
  */
 
 // Query published posts from DB
@@ -36,7 +36,6 @@ if ( ! empty( $db_posts ) ) {
     }
 }
 
-// Ensure screenshot items are present or fallback as needed
 if ( count( $display_posts ) < 5 ) {
     for ( $i = count( $display_posts ); $i < 5; $i++ ) {
         $display_posts[] = array(
@@ -97,27 +96,27 @@ if ( empty( $dropdown_cats ) ) {
 ?>
 
 <div class="widget-member-4">
-    <div id="member_4_widget_content" class="widget-test-4-container">
+    <div id="member_4_widget_content" class="member-4-container">
         <!-- Header Navigation (Right Aligned) -->
-        <div class="widget-test-4-header">
-            <nav class="widget-test-4-nav">
+        <div class="member-4-header">
+            <nav class="member-4-nav">
                 <?php foreach ( $nav_cats as $idx => $cat ) : ?>
                     <?php if ( $idx > 0 ) : ?>
-                        <span class="widget-test-4-sep">|</span>
+                        <span class="member-4-sep">|</span>
                     <?php endif; ?>
-                    <a href="<?php echo esc_url( $cat['link'] ); ?>" class="widget-test-4-nav-link">
+                    <a href="<?php echo esc_url( $cat['link'] ); ?>" class="member-4-nav-link">
                         <?php echo esc_html( $cat['name'] ); ?>
                     </a>
                 <?php endforeach; ?>
                 
-                <span class="widget-test-4-sep">|</span>
+                <span class="member-4-sep">|</span>
 
                 <!-- Dropdown Toggle 'v' -->
-                <div class="widget-test-4-dropdown-wrapper">
-                    <span class="widget-test-4-caret" title="Xem thêm danh mục">v</span>
-                    <div class="widget-test-4-dropdown-menu">
+                <div class="member-4-dropdown-wrapper">
+                    <span class="member-4-caret" title="Xem thêm danh mục">v</span>
+                    <div class="member-4-dropdown-menu">
                         <?php foreach ( $dropdown_cats as $drop_cat ) : ?>
-                            <a href="<?php echo esc_url( $drop_cat['link'] ); ?>" class="widget-test-4-dropdown-item">
+                            <a href="<?php echo esc_url( $drop_cat['link'] ); ?>" class="member-4-dropdown-item">
                                 <?php echo esc_html( $drop_cat['name'] ); ?>
                             </a>
                         <?php endforeach; ?>
@@ -127,11 +126,11 @@ if ( empty( $dropdown_cats ) ) {
         </div>
 
         <!-- Main List Body with Vertical Line on Left -->
-        <div class="widget-test-4-body">
-            <ul class="widget-test-4-list">
+        <div class="member-4-body">
+            <ul class="member-4-list">
                 <?php foreach ( $display_posts as $post_item ) : ?>
-                    <li class="widget-test-4-item">
-                        <a href="<?php echo esc_url( $post_item['link'] ); ?>" class="widget-test-4-title">
+                    <li class="member-4-item">
+                        <a href="<?php echo esc_url( $post_item['link'] ); ?>" class="member-4-title">
                             <?php echo esc_html( $post_item['title'] ); ?>
                         </a>
                     </li>
@@ -140,4 +139,3 @@ if ( empty( $dropdown_cats ) ) {
         </div>
     </div>
 </div>
-

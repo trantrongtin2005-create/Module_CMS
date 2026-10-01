@@ -679,7 +679,8 @@ if ( ! function_exists( 'wp_get_list_item_separator' ) ) :
 endif;
 
 // ==========================================================================
-// Load the existing Widget 4 and Member 4's isolated implementation.
+// Load 3 distinct isolated widgets for team members (No overwriting/conflicts)
 // ==========================================================================
-require_once get_template_directory() . '/inc/widget-test-4.php';
-require_once get_template_directory() . '/inc/widget-member-4.php';
+require_once get_template_directory() . '/inc/widget-test-4.php';    // Widget 1: Video Posts Card (Trọng Tín)
+require_once get_template_directory() . '/inc/widget-member-4.php';  // Widget 2: Category Bar & Vertical List (Trúc Anh)
+require_once get_template_directory() . '/inc/widget-vancanh-4.php'; // Widget 3: ASEAN Cup Grid News (Văn Cảnh)

@@ -17,7 +17,7 @@ if ( ! class_exists( 'Member_4_Widget' ) && class_exists( 'WP_Widget' ) ) {
 
 		public function widget( $args, $instance ) {
 			echo $args['before_widget'] ?? '';
-			get_template_part( 'template-parts/widgets/widget-test-4' );
+			get_template_part( 'template-parts/widgets/widget-member-4' );
 			echo $args['after_widget'] ?? '';
 		}
 	}

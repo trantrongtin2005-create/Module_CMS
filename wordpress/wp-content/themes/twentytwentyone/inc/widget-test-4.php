@@ -137,3 +137,13 @@ function register_custom_widget_test_4() {
 	register_widget( 'widget_test_4' );
 }
 add_action( 'widgets_init', 'register_custom_widget_test_4' );
+
+function enqueue_widget_test_4_styles() {
+	wp_enqueue_style(
+		'widget-test-4-style',
+		get_template_directory_uri() . '/assets/css/widget-test-4.css',
+		array(),
+		'1.0.0'
+	);
+}
+add_action( 'wp_enqueue_scripts', 'enqueue_widget_test_4_styles', 10 );
