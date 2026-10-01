@@ -1,7 +1,6 @@
-
 <?php
 /**
- * WordPress configuration for XAMPP local development.
+ * WordPress configuration for XAMPP / Docker local development.
  */
 
 // ** Database settings ** //

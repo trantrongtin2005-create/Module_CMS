@@ -18,46 +18,7 @@
 </div><!-- #primary -->
 </div><!-- #content -->
 
-
-<?php
-/**
- * =========================================================
- * FOOTER WIDGETS CỦA THEME
- * =========================================================
- */
-get_template_part( 'template-parts/footer/footer-widgets' );
-?>
-
-
-<?php
-/**
- * =========================================================
- * MODULE 4: WIDGET TEST 4
- *
- * Vị trí:
- * Content
- *    ↓
- * Footer Widgets
- *    ↓
- * Widget Test 4
- *    ↓
- * Module 3 Footer
- *
- * Hàm cms_widget_test_4_should_display()
- * quyết định trang hiện tại có được hiển thị widget hay không.
- *
- * Hàm cms_widget_test_4_render_before_footer()
- * chịu trách nhiệm render giao diện widget.
- * =========================================================
- */
-if ( function_exists( 'cms_widget_test_4_should_display' )
-	&& function_exists( 'cms_widget_test_4_render_before_footer' )
-	&& cms_widget_test_4_should_display()
-) {
-	cms_widget_test_4_render_before_footer();
-}
-?>
-
+<?php get_template_part( 'template-parts/footer/footer-widgets' ); ?>
 
 <footer id="colophon" class="site-footer">
 
