@@ -16,11 +16,24 @@
 		</div><!-- #primary -->
 	</div><!-- #content -->
 
+	<!-- ===================== WIDGET TEST 4 (ABOVE FOOTER) ===================== -->
+	<div id="widget-test-4-area" class="widget-test-4-area-wrapper alignwide">
+		<?php
+		if ( is_active_sidebar( 'widget-test-4-sidebar' ) ) {
+			dynamic_sidebar( 'widget-test-4-sidebar' );
+		} else {
+			the_widget( 'Widget_Test_4' );
+		}
+		?>
+	</div>
+	<!-- ===================== END WIDGET TEST 4 ===================== -->
+
 	<?php get_template_part( 'template-parts/footer/footer-widgets' ); ?>
 
 
 
 	<footer id="colophon" class="site-footer">
+
 
 			<!-- ===================== MODULE 3: FOOTER ===================== -->
 		<div id="module-footer">

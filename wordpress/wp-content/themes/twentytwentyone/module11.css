@@ -234,12 +234,14 @@ main.site-main:has(> .module11-home-layout) {
 }
 .module11-single-layout {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
+    grid-template-columns: 240px minmax(0, 1fr) minmax(280px, 320px);
     gap: 24px;
     width: 100%;
-    max-width: none;
-    margin: 0 auto;
+    max-width: 1360px;
+    margin: 20px auto;
     align-items: start;
+    box-sizing: border-box;
+    padding: 0 16px;
 }
 main.site-main:has(.module11-single-layout) {
     width: calc(100% - 24px) !important;
