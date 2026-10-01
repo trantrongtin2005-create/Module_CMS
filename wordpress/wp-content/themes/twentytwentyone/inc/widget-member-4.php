@@ -1,8 +1,8 @@
 <?php
 /**
- * Member 4's isolated WordPress widget.
+ * Member 4: recent posts widget.
  *
- * @package WordPress
+ * @package Twenty_Twenty_One
  */
 
 if ( ! class_exists( 'Member_4_Widget' ) && class_exists( 'WP_Widget' ) ) {
@@ -11,14 +11,33 @@ if ( ! class_exists( 'Member_4_Widget' ) && class_exists( 'WP_Widget' ) ) {
 			parent::__construct(
 				'member_4_widget',
 				__( 'Member 4 Widget', 'twentytwentyone' ),
-				array( 'description' => __( 'Custom widget for member 4.', 'twentytwentyone' ) )
+				array( 'description' => __( 'Displays the latest published posts.', 'twentytwentyone' ) )
 			);
 		}
 
 		public function widget( $args, $instance ) {
+			$recent_posts = new WP_Query(
+				array(
+					'post_type'           => 'post',
+					'post_status'         => 'publish',
+					'posts_per_page'      => 5,
+					'ignore_sticky_posts' => true,
+					'orderby'             => 'date',
+					'order'               => 'DESC',
+				)
+			);
+
 			echo $args['before_widget'] ?? '';
-			get_template_part( 'template-parts/widgets/widget-member-4' );
+			echo '<div class="widget-member-4"><h2>' . esc_html__( 'Bài viết mới', 'twentytwentyone' ) . '</h2><ul>';
+
+			while ( $recent_posts->have_posts() ) {
+				$recent_posts->the_post();
+				echo '<li><a href="' . esc_url( get_permalink() ) . '">' . esc_html( get_the_title() ) . '</a></li>';
+			}
+
+			echo '</ul></div>';
 			echo $args['after_widget'] ?? '';
+			wp_reset_postdata();
 		}
 	}
 }
@@ -27,13 +46,3 @@ function register_member_4_widget() {
 	register_widget( 'Member_4_Widget' );
 }
 add_action( 'widgets_init', 'register_member_4_widget', 40 );
-
-function enqueue_member_4_widget_styles() {
-	wp_enqueue_style(
-		'member-4-widget-style',
-		get_template_directory_uri() . '/assets/css/widget-member-4.css',
-		array(),
-		'1.0.0'
-	);
-}
-add_action( 'wp_enqueue_scripts', 'enqueue_member_4_widget_styles', 10 );
