@@ -6791,9 +6791,12 @@ ol.comment-list li.comment {
 
 /* Khung chứa tổng thể của Widget Test 4 */
 .widget-test-4-container {
+	position: relative !important;
+	display: block !important;
 	width: 100% !important;
 	box-sizing: border-box !important;
 	margin: 20px 0 !important;
+	clear: both !important;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !important;
 }
 
