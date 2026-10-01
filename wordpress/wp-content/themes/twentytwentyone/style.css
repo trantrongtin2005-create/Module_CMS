@@ -6878,7 +6878,7 @@ ol.comment-list li.comment {
    ========================================================================== */
 .module11-single-layout {
 	display: grid !important;
-	grid-template-columns: 240px minmax(0, 1fr) minmax(280px, 320px) !important;
+	grid-template-columns: minmax(220px, 280px) minmax(0, 1fr) !important;
 	gap: 24px !important;
 	width: 100% !important;
 	max-width: 1360px !important;
@@ -6891,19 +6891,41 @@ ol.comment-list li.comment {
 .module9-single-sidebar {
 	width: 100% !important;
 	min-width: 0 !important;
+	grid-column: 1 !important;
+	grid-row: 1 !important;
 }
 
 .module11-single-content {
 	width: 100% !important;
 	min-width: 0 !important;
 	justify-self: center !important;
+	grid-column: 2 !important;
+	grid-row: 1 !important;
 }
 
+<<<<<<< HEAD
+.module11-single-sidebar {
+	width: 100% !important;
+	min-width: 0 !important;
+	grid-column: 1 !important;
+	grid-row: 2 !important;
+}
+
+=======
+>>>>>>> NgocDan_CMS/_fix_module_all
 @media (max-width: 991px) {
 	.module11-single-layout {
 		grid-template-columns: 1fr !important;
 		gap: 20px !important;
 	}
+	.module9-single-sidebar,
+	.module11-single-sidebar,
+	.module11-single-content {
+		grid-column: 1 !important;
+	}
+	.module9-single-sidebar { grid-row: 1 !important; }
+	.module11-single-sidebar { grid-row: 2 !important; }
+	.module11-single-content { grid-row: 3 !important; }
 }
 
 /* ==========================================================================

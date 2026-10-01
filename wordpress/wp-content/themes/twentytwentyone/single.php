@@ -9,17 +9,36 @@
  * @since Twenty Twenty-One 1.0
  */
 
-wp_enqueue_style( 'module11-home', get_stylesheet_directory_uri() . '/module11.css', array(), '1.3.0' );
-wp_enqueue_style( 'module10-style', get_stylesheet_directory_uri() . '/assets/css/module10.css', array(), '1.0.0' );
+wp_enqueue_style(
+	'module11-home',
+	get_stylesheet_directory_uri() . '/module11.css',
+	array(),
+	'1.3.0'
+);
+
+wp_enqueue_style(
+	'module10-style',
+	get_stylesheet_directory_uri() . '/assets/css/module10.css',
+	array(),
+	'1.0.0'
+);
 
 get_header();
 
 echo '<div class="module11-single-layout">';
 
-echo '<aside class="module9-single-sidebar">';
-get_template_part( 'template-parts/sidebar/categories' );
+/* =========================================
+ * MODULE 10 - RECENT POSTS
+ * Bên phải
+ * ========================================= */
+echo '<aside class="module10-single-sidebar module11-single-sidebar" aria-label="Recent posts">';
+get_template_part( 'template-parts/sidebar/module10' );
 echo '</aside>';
 
+/* =========================================
+ * NỘI DUNG BÀI VIẾT
+ * Ở giữa
+ * ========================================= */
 echo '<main class="module11-single-content">';
 
 /* Start the Loop */
@@ -36,7 +55,13 @@ while ( have_posts() ) :
 		the_post_navigation(
 			array(
 				/* translators: %s: Parent post link. */
-				'prev_text' => sprintf( __( '<span class="meta-nav">Published in</span><span class="post-title">%s</span>', 'twentytwentyone' ), '%title' ),
+				'prev_text' => sprintf(
+					__(
+						'<span class="meta-nav">Published in</span><span class="post-title">%s</span>',
+						'twentytwentyone'
+					),
+					'%title'
+				),
 			)
 		);
 	}
@@ -45,10 +70,20 @@ while ( have_posts() ) :
 	if ( comments_open() || get_comments_number() ) {
 		comments_template();
 	}
-endwhile; // End of the loop.
 
-echo '</main><aside class="module10-single-sidebar module11-single-sidebar" aria-label="Recent posts">';
-get_template_part( 'template-parts/sidebar/module10' );
-echo '</aside></div>';
+endwhile;
+/* End of the loop. */
+
+echo '</main>';
+
+/* =========================================
+ * MODULE 9 - CATEGORIES
+ * Bên trái
+ * ========================================= */
+echo '<aside class="module9-single-sidebar">';
+get_template_part( 'template-parts/sidebar/categories' );
+echo '</aside>';
+
+echo '</div>';
 
 get_footer();
