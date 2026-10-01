@@ -16,24 +16,20 @@
 		</div><!-- #primary -->
 	</div><!-- #content -->
 
+	<!-- ===================== WIDGET TEST 4 (ABOVE FOOTER) ===================== -->
+	<?php if ( is_active_sidebar( 'widget-test-4-sidebar' ) ) : ?>
+		<div id="widget-test-4-area" class="widget-test-4-area-wrapper alignwide">
+			<?php dynamic_sidebar( 'widget-test-4-sidebar' ); ?>
+		</div>
+	<?php endif; ?>
+	<!-- ===================== END WIDGET TEST 4 ===================== -->
+
 	<?php get_template_part( 'template-parts/footer/footer-widgets' ); ?>
 
-	<!-- ========================================================================== -->
-	<!-- TÍNH ĐIỂM LẦN 4 MÔN CMS: Hiển thị Widget Test 4 phía trên Footer          -->
-	<!-- Áp dụng tự động cho cả Trang chủ, Trang danh sách và Trang chi tiết      -->
-	<!-- ========================================================================== -->
-	<div class="widget-test-4-area" style="max-width: var(--responsive--aligndefault-width, 1200px); margin: 30px auto 40px auto; padding: 0 20px; box-sizing: border-box;">
-		<?php
-		// Kiểm tra nếu class widget_test_4 đã được khởi tạo thì tiến hành gọi hiển thị
-		if ( class_exists( 'widget_test_4' ) ) {
-			the_widget( 'widget_test_4' );
-		}
-		?>
-	</div>
-	<!-- ===================== KẾT THÚC WIDGET TEST 4 ===================== -->
 
 
 	<footer id="colophon" class="site-footer">
+
 
 			<!-- ===================== MODULE 3: FOOTER ===================== -->
 		<div id="module-footer">

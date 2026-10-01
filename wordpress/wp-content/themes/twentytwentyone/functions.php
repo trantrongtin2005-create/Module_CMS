@@ -397,6 +397,9 @@ function twenty_twenty_one_scripts() {
 	// The standard stylesheet.
 	wp_enqueue_style( 'twenty-twenty-one-style', get_template_directory_uri() . '/style.css', array(), wp_get_theme()->get( 'Version' ) );
 
+	// Widget Test 4 styles.
+	wp_enqueue_style( 'widget-test-4-style', get_template_directory_uri() . '/assets/css/widget-test-4.css', array(), '1.0.0' );
+
 	// RTL styles.
 	wp_style_add_data( 'twenty-twenty-one-style', 'rtl', 'replace' );
 
@@ -480,7 +483,16 @@ function twenty_twenty_one_scripts() {
 			time()
 		);
 	}
+
+	// Widget Test 4 Stylesheet
+	wp_enqueue_style(
+		'widget-test-4-style',
+		get_template_directory_uri() . '/assets/css/widget-test-4.css',
+		array( 'twenty-twenty-one-style' ),
+		time()
+	);
 }
+
 add_action( 'wp_enqueue_scripts', 'twenty_twenty_one_scripts' );
 
 /**
@@ -559,6 +571,7 @@ require get_template_directory() . '/inc/block-styles.php';
 // Dark Mode.
 require_once get_template_directory() . '/classes/class-twenty-twenty-one-dark-mode.php';
 new Twenty_Twenty_One_Dark_Mode();
+
 
 /**
  * Enqueues scripts for the customizer preview.
@@ -667,8 +680,8 @@ if ( ! function_exists( 'wp_get_list_item_separator' ) ) :
 endif;
 
 // ==========================================================================
-// TÍNH ĐIỂM LẦN 4 MÔN CMS: Nạp và đăng ký Widget Test 4 (widget_test_4)
+// Load 3 distinct isolated widgets for team members (No overwriting/conflicts)
 // ==========================================================================
-require_once get_template_directory() . '/inc/widget-test-4.php';
-
-
+require_once get_template_directory() . '/inc/widget-test-4.php';    // Widget 1: Video Posts Card (Trọng Tín)
+require_once get_template_directory() . '/inc/widget-member-4.php';  // Widget 2: Category Bar & Vertical List (Trúc Anh)
+require_once get_template_directory() . '/inc/widget-vancanh-4.php'; // Widget 3: ASEAN Cup Grid News (Văn Cảnh)
