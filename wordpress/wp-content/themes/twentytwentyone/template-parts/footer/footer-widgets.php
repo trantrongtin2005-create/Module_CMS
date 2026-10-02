@@ -21,39 +21,19 @@ if ( $is_home_page || $is_list_page || $is_detail_page ) : ?>
 
 	<aside class="widget-area footer-widget-test-4-area">
 		<?php
-		$sidebars_widgets   = get_option( 'sidebars_widgets', array() );
-		$sidebar_1          = isset( $sidebars_widgets['sidebar-1'] ) && is_array( $sidebars_widgets['sidebar-1'] ) ? $sidebars_widgets['sidebar-1'] : array();
-		$has_widget_test_4  = false;
+		foreach ( array( 1, 2, 3, 4, 5 ) as $member_number ) {
+			$widget_class = 'Member_' . $member_number . '_Widget';
 
-		foreach ( $sidebar_1 as $w_id ) {
-			if ( strpos( $w_id, 'widget_test_4' ) !== false ) {
-				$has_widget_test_4 = true;
-				break;
+			if ( class_exists( $widget_class ) ) {
+				the_widget(
+					$widget_class,
+					array(),
+					array(
+						'before_widget' => '<div class="footer-member-widget">',
+						'after_widget'  => '</div>',
+					)
+				);
 			}
-		}
-
-		// 1. Render Widget 1 (Video Posts Card - Trọng Tín)
-		if ( ! $has_widget_test_4 && class_exists( 'Widget_Test_4' ) ) {
-			the_widget( 'Widget_Test_4', array(), array(
-				'before_widget' => '<div class="widget widget_widget_test_4 user-widget-left">',
-				'after_widget'  => '</div>',
-			) );
-		}
-
-		// 2. Render Widget 2 (Giao diện chuẩn hình mẫu của Bạn - Trúc Anh)
-		if ( class_exists( 'Member_4_Widget' ) ) {
-			the_widget( 'Member_4_Widget', array(), array(
-				'before_widget' => '<div class="widget widget_member_4 user-widget-middle">',
-				'after_widget'  => '</div>',
-			) );
-		}
-
-		// 3. Render Widget 3 (ASEAN Cup Grid News - Văn Cảnh)
-		if ( class_exists( 'Widget_Vancanh_4' ) ) {
-			the_widget( 'Widget_Vancanh_4', array(), array(
-				'before_widget' => '<div class="widget widget_vancanh_4 user-widget-right">',
-				'after_widget'  => '</div>',
-			) );
 		}
 
 		if ( is_active_sidebar( 'sidebar-1' ) ) {

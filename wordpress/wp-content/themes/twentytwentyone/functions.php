@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Functions and definitions
  *
@@ -14,11 +15,11 @@
  *
  * @global string $wp_version The WordPress version string.
  */
-if ( version_compare( $GLOBALS['wp_version'], '5.3', '<' ) ) {
+if (version_compare($GLOBALS['wp_version'], '5.3', '<')) {
 	require get_template_directory() . '/inc/back-compat.php';
 }
 
-if ( ! function_exists( 'twenty_twenty_one_setup' ) ) {
+if (! function_exists('twenty_twenty_one_setup')) {
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -31,16 +32,17 @@ if ( ! function_exists( 'twenty_twenty_one_setup' ) ) {
 	 *
 	 * @return void
 	 */
-	function twenty_twenty_one_setup() {
+	function twenty_twenty_one_setup()
+	{
 		// Add default posts and comments RSS feed links to head.
-		add_theme_support( 'automatic-feed-links' );
+		add_theme_support('automatic-feed-links');
 
 		/*
 		 * Let WordPress manage the document title.
 		 * This theme does not use a hard-coded <title> tag in the document head,
 		 * WordPress will provide it for us.
 		 */
-		add_theme_support( 'title-tag' );
+		add_theme_support('title-tag');
 
 		/**
 		 * Add post-formats support.
@@ -65,17 +67,17 @@ if ( ! function_exists( 'twenty_twenty_one_setup' ) ) {
 		 *
 		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		 */
-		add_theme_support( 'post-thumbnails' );
-		set_post_thumbnail_size( 1568, 9999 );
+		add_theme_support('post-thumbnails');
+		set_post_thumbnail_size(1568, 9999);
 
 		register_nav_menus(
 			array(
-				'primary'      => esc_html__( 'Primary menu', 'twentytwentyone' ),
-				'footer'       => esc_html__( 'Secondary menu', 'twentytwentyone' ),
+				'primary'      => esc_html__('Primary menu', 'twentytwentyone'),
+				'footer'       => esc_html__('Secondary menu', 'twentytwentyone'),
 				// Module 3: Footer Quick Links columns
-				'footer-col-1' => esc_html__( 'Footer Column 1 (Quick Links)', 'twentytwentyone' ),
-				'footer-col-2' => esc_html__( 'Footer Column 2 (Quick Links)', 'twentytwentyone' ),
-				'footer-col-3' => esc_html__( 'Footer Column 3 (Quick Links)', 'twentytwentyone' ),
+				'footer-col-1' => esc_html__('Footer Column 1 (Quick Links)', 'twentytwentyone'),
+				'footer-col-2' => esc_html__('Footer Column 2 (Quick Links)', 'twentytwentyone'),
+				'footer-col-3' => esc_html__('Footer Column 3 (Quick Links)', 'twentytwentyone'),
 			)
 		);
 
@@ -116,67 +118,67 @@ if ( ! function_exists( 'twenty_twenty_one_setup' ) ) {
 		);
 
 		// Add theme support for selective refresh for widgets.
-		add_theme_support( 'customize-selective-refresh-widgets' );
+		add_theme_support('customize-selective-refresh-widgets');
 
 		// Add support for Block Styles.
-		add_theme_support( 'wp-block-styles' );
+		add_theme_support('wp-block-styles');
 
 		// Add support for full and wide align images.
-		add_theme_support( 'align-wide' );
+		add_theme_support('align-wide');
 
 		// Add support for editor styles.
-		add_theme_support( 'editor-styles' );
-		$background_color = get_theme_mod( 'background_color', 'D1E4DD' );
-		if ( 127 > Twenty_Twenty_One_Custom_Colors::get_relative_luminance_from_hex( $background_color ) ) {
-			add_theme_support( 'dark-editor-style' );
+		add_theme_support('editor-styles');
+		$background_color = get_theme_mod('background_color', 'D1E4DD');
+		if (127 > Twenty_Twenty_One_Custom_Colors::get_relative_luminance_from_hex($background_color)) {
+			add_theme_support('dark-editor-style');
 		}
 
 		// Enqueue editor styles.
-		add_editor_style( './assets/css/style-editor.css' );
+		add_editor_style('./assets/css/style-editor.css');
 
 		// Add custom editor font sizes.
 		add_theme_support(
 			'editor-font-sizes',
 			array(
 				array(
-					'name'      => esc_html__( 'Extra small', 'twentytwentyone' ),
-					'shortName' => esc_html_x( 'XS', 'Font size', 'twentytwentyone' ),
+					'name'      => esc_html__('Extra small', 'twentytwentyone'),
+					'shortName' => esc_html_x('XS', 'Font size', 'twentytwentyone'),
 					'size'      => 16,
 					'slug'      => 'extra-small',
 				),
 				array(
-					'name'      => esc_html__( 'Small', 'twentytwentyone' ),
-					'shortName' => esc_html_x( 'S', 'Font size', 'twentytwentyone' ),
+					'name'      => esc_html__('Small', 'twentytwentyone'),
+					'shortName' => esc_html_x('S', 'Font size', 'twentytwentyone'),
 					'size'      => 18,
 					'slug'      => 'small',
 				),
 				array(
-					'name'      => esc_html__( 'Normal', 'twentytwentyone' ),
-					'shortName' => esc_html_x( 'M', 'Font size', 'twentytwentyone' ),
+					'name'      => esc_html__('Normal', 'twentytwentyone'),
+					'shortName' => esc_html_x('M', 'Font size', 'twentytwentyone'),
 					'size'      => 20,
 					'slug'      => 'normal',
 				),
 				array(
-					'name'      => esc_html__( 'Large', 'twentytwentyone' ),
-					'shortName' => esc_html_x( 'L', 'Font size', 'twentytwentyone' ),
+					'name'      => esc_html__('Large', 'twentytwentyone'),
+					'shortName' => esc_html_x('L', 'Font size', 'twentytwentyone'),
 					'size'      => 24,
 					'slug'      => 'large',
 				),
 				array(
-					'name'      => esc_html__( 'Extra large', 'twentytwentyone' ),
-					'shortName' => esc_html_x( 'XL', 'Font size', 'twentytwentyone' ),
+					'name'      => esc_html__('Extra large', 'twentytwentyone'),
+					'shortName' => esc_html_x('XL', 'Font size', 'twentytwentyone'),
 					'size'      => 40,
 					'slug'      => 'extra-large',
 				),
 				array(
-					'name'      => esc_html__( 'Huge', 'twentytwentyone' ),
-					'shortName' => esc_html_x( 'XXL', 'Font size', 'twentytwentyone' ),
+					'name'      => esc_html__('Huge', 'twentytwentyone'),
+					'shortName' => esc_html_x('XXL', 'Font size', 'twentytwentyone'),
 					'size'      => 96,
 					'slug'      => 'huge',
 				),
 				array(
-					'name'      => esc_html__( 'Gigantic', 'twentytwentyone' ),
-					'shortName' => esc_html_x( 'XXXL', 'Font size', 'twentytwentyone' ),
+					'name'      => esc_html__('Gigantic', 'twentytwentyone'),
+					'shortName' => esc_html_x('XXXL', 'Font size', 'twentytwentyone'),
 					'size'      => 144,
 					'slug'      => 'gigantic',
 				),
@@ -207,52 +209,52 @@ if ( ! function_exists( 'twenty_twenty_one_setup' ) ) {
 			'editor-color-palette',
 			array(
 				array(
-					'name'  => esc_html__( 'Black', 'twentytwentyone' ),
+					'name'  => esc_html__('Black', 'twentytwentyone'),
 					'slug'  => 'black',
 					'color' => $black,
 				),
 				array(
-					'name'  => esc_html__( 'Dark gray', 'twentytwentyone' ),
+					'name'  => esc_html__('Dark gray', 'twentytwentyone'),
 					'slug'  => 'dark-gray',
 					'color' => $dark_gray,
 				),
 				array(
-					'name'  => esc_html__( 'Gray', 'twentytwentyone' ),
+					'name'  => esc_html__('Gray', 'twentytwentyone'),
 					'slug'  => 'gray',
 					'color' => $gray,
 				),
 				array(
-					'name'  => esc_html__( 'Green', 'twentytwentyone' ),
+					'name'  => esc_html__('Green', 'twentytwentyone'),
 					'slug'  => 'green',
 					'color' => $green,
 				),
 				array(
-					'name'  => esc_html__( 'Blue', 'twentytwentyone' ),
+					'name'  => esc_html__('Blue', 'twentytwentyone'),
 					'slug'  => 'blue',
 					'color' => $blue,
 				),
 				array(
-					'name'  => esc_html__( 'Purple', 'twentytwentyone' ),
+					'name'  => esc_html__('Purple', 'twentytwentyone'),
 					'slug'  => 'purple',
 					'color' => $purple,
 				),
 				array(
-					'name'  => esc_html__( 'Red', 'twentytwentyone' ),
+					'name'  => esc_html__('Red', 'twentytwentyone'),
 					'slug'  => 'red',
 					'color' => $red,
 				),
 				array(
-					'name'  => esc_html__( 'Orange', 'twentytwentyone' ),
+					'name'  => esc_html__('Orange', 'twentytwentyone'),
 					'slug'  => 'orange',
 					'color' => $orange,
 				),
 				array(
-					'name'  => esc_html__( 'Yellow', 'twentytwentyone' ),
+					'name'  => esc_html__('Yellow', 'twentytwentyone'),
 					'slug'  => 'yellow',
 					'color' => $yellow,
 				),
 				array(
-					'name'  => esc_html__( 'White', 'twentytwentyone' ),
+					'name'  => esc_html__('White', 'twentytwentyone'),
 					'slug'  => 'white',
 					'color' => $white,
 				),
@@ -263,42 +265,42 @@ if ( ! function_exists( 'twenty_twenty_one_setup' ) ) {
 			'editor-gradient-presets',
 			array(
 				array(
-					'name'     => esc_html__( 'Purple to yellow', 'twentytwentyone' ),
+					'name'     => esc_html__('Purple to yellow', 'twentytwentyone'),
 					'gradient' => 'linear-gradient(160deg, ' . $purple . ' 0%, ' . $yellow . ' 100%)',
 					'slug'     => 'purple-to-yellow',
 				),
 				array(
-					'name'     => esc_html__( 'Yellow to purple', 'twentytwentyone' ),
+					'name'     => esc_html__('Yellow to purple', 'twentytwentyone'),
 					'gradient' => 'linear-gradient(160deg, ' . $yellow . ' 0%, ' . $purple . ' 100%)',
 					'slug'     => 'yellow-to-purple',
 				),
 				array(
-					'name'     => esc_html__( 'Green to yellow', 'twentytwentyone' ),
+					'name'     => esc_html__('Green to yellow', 'twentytwentyone'),
 					'gradient' => 'linear-gradient(160deg, ' . $green . ' 0%, ' . $yellow . ' 100%)',
 					'slug'     => 'green-to-yellow',
 				),
 				array(
-					'name'     => esc_html__( 'Yellow to green', 'twentytwentyone' ),
+					'name'     => esc_html__('Yellow to green', 'twentytwentyone'),
 					'gradient' => 'linear-gradient(160deg, ' . $yellow . ' 0%, ' . $green . ' 100%)',
 					'slug'     => 'yellow-to-green',
 				),
 				array(
-					'name'     => esc_html__( 'Red to yellow', 'twentytwentyone' ),
+					'name'     => esc_html__('Red to yellow', 'twentytwentyone'),
 					'gradient' => 'linear-gradient(160deg, ' . $red . ' 0%, ' . $yellow . ' 100%)',
 					'slug'     => 'red-to-yellow',
 				),
 				array(
-					'name'     => esc_html__( 'Yellow to red', 'twentytwentyone' ),
+					'name'     => esc_html__('Yellow to red', 'twentytwentyone'),
 					'gradient' => 'linear-gradient(160deg, ' . $yellow . ' 0%, ' . $red . ' 100%)',
 					'slug'     => 'yellow-to-red',
 				),
 				array(
-					'name'     => esc_html__( 'Purple to red', 'twentytwentyone' ),
+					'name'     => esc_html__('Purple to red', 'twentytwentyone'),
 					'gradient' => 'linear-gradient(160deg, ' . $purple . ' 0%, ' . $red . ' 100%)',
 					'slug'     => 'purple-to-red',
 				),
 				array(
-					'name'     => esc_html__( 'Red to purple', 'twentytwentyone' ),
+					'name'     => esc_html__('Red to purple', 'twentytwentyone'),
 					'gradient' => 'linear-gradient(160deg, ' . $red . ' 0%, ' . $purple . ' 100%)',
 					'slug'     => 'red-to-purple',
 				),
@@ -310,32 +312,32 @@ if ( ! function_exists( 'twenty_twenty_one_setup' ) ) {
 		* This is done conditionally to avoid loading the starter content on every
 		* page load, as it is a one-off operation only needed once in the customizer.
 		*/
-		if ( is_customize_preview() ) {
+		if (is_customize_preview()) {
 			require get_template_directory() . '/inc/starter-content.php';
-			add_theme_support( 'starter-content', twenty_twenty_one_get_starter_content() );
+			add_theme_support('starter-content', twenty_twenty_one_get_starter_content());
 		}
 
 		// Add support for responsive embedded content.
-		add_theme_support( 'responsive-embeds' );
+		add_theme_support('responsive-embeds');
 
 		// Add support for custom line height controls.
-		add_theme_support( 'custom-line-height' );
+		add_theme_support('custom-line-height');
 
 		// Add support for link color control.
-		add_theme_support( 'link-color' );
+		add_theme_support('link-color');
 
 		// Add support for experimental cover block spacing.
-		add_theme_support( 'custom-spacing' );
+		add_theme_support('custom-spacing');
 
 		// Add support for custom units.
 		// This was removed in WordPress 5.6 but is still required to properly support WP 5.5.
-		add_theme_support( 'custom-units' );
+		add_theme_support('custom-units');
 
 		// Remove feed icon link from legacy RSS widget.
-		add_filter( 'rss_widget_feed_link', '__return_empty_string' );
+		add_filter('rss_widget_feed_link', '__return_empty_string');
 	}
 }
-add_action( 'after_setup_theme', 'twenty_twenty_one_setup' );
+add_action('after_setup_theme', 'twenty_twenty_one_setup');
 
 /**
  * Registers widget area.
@@ -346,13 +348,14 @@ add_action( 'after_setup_theme', 'twenty_twenty_one_setup' );
  *
  * @return void
  */
-function twenty_twenty_one_widgets_init() {
+function twenty_twenty_one_widgets_init()
+{
 
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Footer', 'twentytwentyone' ),
+			'name'          => esc_html__('Footer', 'twentytwentyone'),
 			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here to appear in your footer.', 'twentytwentyone' ),
+			'description'   => esc_html__('Add widgets here to appear in your footer.', 'twentytwentyone'),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
 			'before_title'  => '<h2 class="widget-title">',
@@ -360,7 +363,7 @@ function twenty_twenty_one_widgets_init() {
 		)
 	);
 }
-add_action( 'widgets_init', 'twenty_twenty_one_widgets_init' );
+add_action('widgets_init', 'twenty_twenty_one_widgets_init');
 
 /**
  * Sets the content width in pixels, based on the theme's design and stylesheet.
@@ -373,7 +376,8 @@ add_action( 'widgets_init', 'twenty_twenty_one_widgets_init' );
  *
  * @return void
  */
-function twenty_twenty_one_content_width() {
+function twenty_twenty_one_content_width()
+{
 	/**
 	 * Filters Twenty Twenty-One content width of the theme.
 	 *
@@ -381,9 +385,9 @@ function twenty_twenty_one_content_width() {
 	 *
 	 * @param int $content_width Content width in pixels.
 	 */
-	$GLOBALS['content_width'] = apply_filters( 'twenty_twenty_one_content_width', 750 );
+	$GLOBALS['content_width'] = apply_filters('twenty_twenty_one_content_width', 750);
 }
-add_action( 'after_setup_theme', 'twenty_twenty_one_content_width', 0 );
+add_action('after_setup_theme', 'twenty_twenty_one_content_width', 0);
 
 /**
  * Enqueues scripts and styles.
@@ -393,22 +397,24 @@ add_action( 'after_setup_theme', 'twenty_twenty_one_content_width', 0 );
  *
  * @return void
  */
-function twenty_twenty_one_scripts() {
+function twenty_twenty_one_scripts()
+{
 	// The standard stylesheet.
-	wp_enqueue_style( 'twenty-twenty-one-style', get_template_directory_uri() . '/style.css', array(), wp_get_theme()->get( 'Version' ) );
+	wp_enqueue_style('twenty-twenty-one-style', get_template_directory_uri() . '/style.css', array(), wp_get_theme()->get('Version'));
 
 	// Widget Test 4 styles.
 	wp_enqueue_style( 'widget-test-4-style', get_template_directory_uri() . '/assets/css/widget-test-4.css', array(), '1.0.0' );
+	wp_enqueue_style( 'widget-members-style', get_template_directory_uri() . '/assets/css/widget-members.css', array(), '1.0.0' );
 
 	// RTL styles.
-	wp_style_add_data( 'twenty-twenty-one-style', 'rtl', 'replace' );
+	wp_style_add_data('twenty-twenty-one-style', 'rtl', 'replace');
 
 	// Print styles.
-	wp_enqueue_style( 'twenty-twenty-one-print-style', get_template_directory_uri() . '/assets/css/print.css', array(), wp_get_theme()->get( 'Version' ), 'print' );
+	wp_enqueue_style('twenty-twenty-one-print-style', get_template_directory_uri() . '/assets/css/print.css', array(), wp_get_theme()->get('Version'), 'print');
 
 	// Threaded comment reply styles.
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
+	if (is_singular() && comments_open() && get_option('thread_comments')) {
+		wp_enqueue_script('comment-reply');
 	}
 
 	// Register the handles for unused IE11 polyfill scripts.
@@ -416,24 +422,24 @@ function twenty_twenty_one_scripts() {
 		'twenty-twenty-one-ie11-polyfills-asset',
 		false,
 		array(),
-		wp_get_theme()->get( 'Version' ),
-		array( 'in_footer' => true )
+		wp_get_theme()->get('Version'),
+		array('in_footer' => true)
 	);
 	wp_register_script(
 		'twenty-twenty-one-ie11-polyfills',
 		false,
 		array(),
-		wp_get_theme()->get( 'Version' ),
-		array( 'in_footer' => true )
+		wp_get_theme()->get('Version'),
+		array('in_footer' => true)
 	);
 
 	// Main navigation scripts.
-	if ( has_nav_menu( 'primary' ) ) {
+	if (has_nav_menu('primary')) {
 		wp_enqueue_script(
 			'twenty-twenty-one-primary-navigation-script',
 			get_template_directory_uri() . '/assets/js/primary-navigation.js',
 			array(),
-			wp_get_theme()->get( 'Version' ),
+			wp_get_theme()->get('Version'),
 			array(
 				'in_footer' => false, // Because involves header.
 				'strategy'  => 'defer',
@@ -446,8 +452,8 @@ function twenty_twenty_one_scripts() {
 		'twenty-twenty-one-responsive-embeds-script',
 		get_template_directory_uri() . '/assets/js/responsive-embeds.js',
 		array(),
-		wp_get_theme()->get( 'Version' ),
-		array( 'in_footer' => true )
+		wp_get_theme()->get('Version'),
+		array('in_footer' => true)
 	);
 
 	// Font Awesome CDN for Module 1 & Module 3 icons
@@ -462,7 +468,7 @@ function twenty_twenty_one_scripts() {
 	wp_enqueue_style(
 		'module-header-style',
 		get_template_directory_uri() . '/assets/css/module-header.css',
-		array( 'twenty-twenty-one-style', 'font-awesome-cdn' ),
+		array('twenty-twenty-one-style', 'font-awesome-cdn'),
 		time()
 	);
 
@@ -470,16 +476,16 @@ function twenty_twenty_one_scripts() {
 	wp_enqueue_style(
 		'module-footer-style',
 		get_template_directory_uri() . '/assets/css/module-footer.css',
-		array( 'twenty-twenty-one-style', 'font-awesome-cdn' ),
+		array('twenty-twenty-one-style', 'font-awesome-cdn'),
 		time()
 	);
 
 	// Module 6 Detail Page Stylesheet (only on single posts)
-	if ( is_single() ) {
+	if (is_single()) {
 		wp_enqueue_style(
 			'module-detail-style',
 			get_template_directory_uri() . '/assets/css/module-detail.css',
-			array( 'twenty-twenty-one-style' ),
+			array('twenty-twenty-one-style'),
 			time()
 		);
 	}
@@ -492,8 +498,7 @@ function twenty_twenty_one_scripts() {
 		time()
 	);
 }
-
-add_action( 'wp_enqueue_scripts', 'twenty_twenty_one_scripts' );
+add_action('wp_enqueue_scripts', 'twenty_twenty_one_scripts');
 
 /**
  * Enqueues block editor script.
@@ -502,12 +507,13 @@ add_action( 'wp_enqueue_scripts', 'twenty_twenty_one_scripts' );
  *
  * @return void
  */
-function twentytwentyone_block_editor_script() {
+function twentytwentyone_block_editor_script()
+{
 
-	wp_enqueue_script( 'twentytwentyone-editor', get_theme_file_uri( '/assets/js/editor.js' ), array( 'wp-blocks', 'wp-dom' ), wp_get_theme()->get( 'Version' ), array( 'in_footer' => true ) );
+	wp_enqueue_script('twentytwentyone-editor', get_theme_file_uri('/assets/js/editor.js'), array('wp-blocks', 'wp-dom'), wp_get_theme()->get('Version'), array('in_footer' => true));
 }
 
-add_action( 'enqueue_block_editor_assets', 'twentytwentyone_block_editor_script' );
+add_action('enqueue_block_editor_assets', 'twentytwentyone_block_editor_script');
 
 /**
  * Adds an HTML comment about the lack of Internet Explorer support.
@@ -520,8 +526,9 @@ add_action( 'enqueue_block_editor_assets', 'twentytwentyone_block_editor_script'
  *
  * @link https://git.io/vWdr2
  */
-function twenty_twenty_one_skip_link_focus_fix() {
-	?>
+function twenty_twenty_one_skip_link_focus_fix()
+{
+?>
 	<!-- <?php echo __FUNCTION__; ?>(): Internet Explorer support was removed. -->
 	<?php
 }
@@ -533,14 +540,15 @@ function twenty_twenty_one_skip_link_focus_fix() {
  *
  * @return void
  */
-function twenty_twenty_one_non_latin_languages() {
-	$custom_css = twenty_twenty_one_get_non_latin_css( 'front-end' );
+function twenty_twenty_one_non_latin_languages()
+{
+	$custom_css = twenty_twenty_one_get_non_latin_css('front-end');
 
-	if ( $custom_css ) {
-		wp_add_inline_style( 'twenty-twenty-one-style', $custom_css );
+	if ($custom_css) {
+		wp_add_inline_style('twenty-twenty-one-style', $custom_css);
 	}
 }
-add_action( 'wp_enqueue_scripts', 'twenty_twenty_one_non_latin_languages' );
+add_action('wp_enqueue_scripts', 'twenty_twenty_one_non_latin_languages');
 
 // SVG Icons class.
 require get_template_directory() . '/classes/class-twenty-twenty-one-svg-icons.php';
@@ -580,24 +588,25 @@ new Twenty_Twenty_One_Dark_Mode();
  *
  * @return void
  */
-function twentytwentyone_customize_preview_init() {
+function twentytwentyone_customize_preview_init()
+{
 	wp_enqueue_script(
 		'twentytwentyone-customize-helpers',
-		get_theme_file_uri( '/assets/js/customize-helpers.js' ),
+		get_theme_file_uri('/assets/js/customize-helpers.js'),
 		array(),
-		wp_get_theme()->get( 'Version' ),
-		array( 'in_footer' => true )
+		wp_get_theme()->get('Version'),
+		array('in_footer' => true)
 	);
 
 	wp_enqueue_script(
 		'twentytwentyone-customize-preview',
-		get_theme_file_uri( '/assets/js/customize-preview.js' ),
-		array( 'customize-preview', 'customize-selective-refresh', 'jquery', 'twentytwentyone-customize-helpers' ),
-		wp_get_theme()->get( 'Version' ),
-		array( 'in_footer' => true )
+		get_theme_file_uri('/assets/js/customize-preview.js'),
+		array('customize-preview', 'customize-selective-refresh', 'jquery', 'twentytwentyone-customize-helpers'),
+		wp_get_theme()->get('Version'),
+		array('in_footer' => true)
 	);
 }
-add_action( 'customize_preview_init', 'twentytwentyone_customize_preview_init' );
+add_action('customize_preview_init', 'twentytwentyone_customize_preview_init');
 
 /**
  * Enqueues scripts for the customizer.
@@ -606,17 +615,18 @@ add_action( 'customize_preview_init', 'twentytwentyone_customize_preview_init' )
  *
  * @return void
  */
-function twentytwentyone_customize_controls_enqueue_scripts() {
+function twentytwentyone_customize_controls_enqueue_scripts()
+{
 
 	wp_enqueue_script(
 		'twentytwentyone-customize-helpers',
-		get_theme_file_uri( '/assets/js/customize-helpers.js' ),
+		get_theme_file_uri('/assets/js/customize-helpers.js'),
 		array(),
-		wp_get_theme()->get( 'Version' ),
-		array( 'in_footer' => true )
+		wp_get_theme()->get('Version'),
+		array('in_footer' => true)
 	);
 }
-add_action( 'customize_controls_enqueue_scripts', 'twentytwentyone_customize_controls_enqueue_scripts' );
+add_action('customize_controls_enqueue_scripts', 'twentytwentyone_customize_controls_enqueue_scripts');
 
 /**
  * Calculates classes for the main <html> element.
@@ -625,7 +635,8 @@ add_action( 'customize_controls_enqueue_scripts', 'twentytwentyone_customize_con
  *
  * @return void
  */
-function twentytwentyone_the_html_classes() {
+function twentytwentyone_the_html_classes()
+{
 	/**
 	 * Filters the classes for the main <html> element.
 	 *
@@ -633,11 +644,11 @@ function twentytwentyone_the_html_classes() {
 	 *
 	 * @param string $classes The list of classes. Default empty string.
 	 */
-	$classes = apply_filters( 'twentytwentyone_html_classes', '' );
-	if ( ! $classes ) {
+	$classes = apply_filters('twentytwentyone_html_classes', '');
+	if (! $classes) {
 		return;
 	}
-	echo 'class="' . esc_attr( $classes ) . '"';
+	echo 'class="' . esc_attr($classes) . '"';
 }
 
 /**
@@ -648,22 +659,23 @@ function twentytwentyone_the_html_classes() {
  *
  * @return void
  */
-function twentytwentyone_add_ie_class() {
+function twentytwentyone_add_ie_class()
+{
 	$script  = "
 		if ( -1 !== navigator.userAgent.indexOf('MSIE') || -1 !== navigator.appVersion.indexOf('Trident/') ) {
 			document.body.classList.add('is-IE');
 		}
 	";
-	$script .= '//# sourceURL=' . rawurlencode( __FUNCTION__ );
+	$script .= '//# sourceURL=' . rawurlencode(__FUNCTION__);
 
-	if ( function_exists( 'wp_print_inline_script_tag' ) ) {
-		wp_print_inline_script_tag( $script );
+	if (function_exists('wp_print_inline_script_tag')) {
+		wp_print_inline_script_tag($script);
 	} else {
 		echo "<script>$script</script>\n";
 	}
 }
 
-if ( ! function_exists( 'wp_get_list_item_separator' ) ) :
+if (! function_exists('wp_get_list_item_separator')) :
 	/**
 	 * Retrieves the list item separator based on the locale.
 	 *
@@ -673,15 +685,364 @@ if ( ! function_exists( 'wp_get_list_item_separator' ) ) :
 	 *
 	 * @return string Locale-specific list item separator.
 	 */
-	function wp_get_list_item_separator() {
+	function wp_get_list_item_separator()
+	{
 		/* translators: Used between list items, there is a space after the comma. */
-		return __( ', ', 'twentytwentyone' );
+		return __(', ', 'twentytwentyone');
 	}
 endif;
 
-// ==========================================================================
-// Load 3 distinct isolated widgets for team members (No overwriting/conflicts)
-// ==========================================================================
-require_once get_template_directory() . '/inc/widget-test-4.php';    // Widget 1: Video Posts Card (Trọng Tín)
-require_once get_template_directory() . '/inc/widget-member-4.php';  // Widget 2: Category Bar & Vertical List (Trúc Anh)
-require_once get_template_directory() . '/inc/widget-vancanh-4.php'; // Widget 3: ASEAN Cup Grid News (Văn Cảnh)
+class CMS_Widget_Test_4 extends WP_Widget
+{
+
+	/**
+	 * =====================================================
+	 * CONSTRUCTOR
+	 * =====================================================
+	 */
+	public function __construct()
+	{
+		parent::__construct(
+			'widget_test_4',
+			'widget_test_4',
+			array(
+				'description' => 'Widget tin tức CMS Module 4.',
+			)
+		);
+	}
+
+
+	/**
+	 * =====================================================
+	 * FRONTEND
+	 * =====================================================
+	 */
+	public function widget($args, $instance)
+	{
+
+		/**
+		 * Lấy ngẫu nhiên 4 bài viết.
+		 */
+		$query = new WP_Query(
+			array(
+				'post_type'           => 'post',
+				'post_status'         => 'publish',
+				'posts_per_page'      => 4,
+				'orderby'             => 'rand',
+				'ignore_sticky_posts' => true,
+			)
+		);
+
+	?>
+
+		<section class="widget-test-4">
+
+			<?php if ($query->have_posts()) : ?>
+
+				<?php
+				$index = 0;
+				?>
+
+				<?php while ($query->have_posts()) : $query->the_post(); ?>
+
+					<?php if (0 === $index) : ?>
+
+						<!-- =====================================
+						     BÀI VIẾT NỔI BẬT
+						     ===================================== -->
+
+						<article class="widget-test-4-featured">
+
+							<a
+								class="widget-test-4-featured-image"
+								href="<?php the_permalink(); ?>"
+								aria-label="<?php echo esc_attr(get_the_title()); ?>">
+
+								<img
+									src="<?php echo esc_url(home_url('/wp-content/uploads/tdc1.png')); ?>"
+									alt="<?php echo esc_attr(get_the_title()); ?>">
+
+							</a>
+
+
+							<div class="widget-test-4-featured-content">
+
+								<h2 class="widget-test-4-featured-title">
+
+									<a href="<?php the_permalink(); ?>">
+										<?php the_title(); ?>
+									</a>
+
+								</h2>
+
+
+								<div class="widget-test-4-meta">
+
+									<span>
+										<?php echo esc_html(get_the_author()); ?>
+									</span>
+
+									<span> | </span>
+
+									<span>
+										<?php
+										echo esc_html(
+											get_the_date('d/m/Y H:i')
+										);
+										?>
+									</span>
+
+								</div>
+
+
+								<div class="widget-test-4-excerpt">
+
+									<?php
+									echo esc_html(
+										wp_trim_words(
+											get_the_excerpt(),
+											35,
+											'...'
+										)
+									);
+									?>
+
+								</div>
+
+							</div>
+
+						</article>
+
+
+					<?php else : ?>
+
+						<!-- =====================================
+     3 BÀI VIẾT PHỤ
+     ===================================== -->
+
+						<?php if (1 === $index) : ?>
+
+							<div class="widget-test-4-secondary">
+
+							<?php endif; ?>
+
+
+							<article class="widget-test-4-item">
+
+								<a
+									class="widget-test-4-item-image"
+									href="<?php the_permalink(); ?>"
+									aria-label="<?php echo esc_attr(get_the_title()); ?>">
+
+									<img
+										src="<?php echo esc_url(home_url('/wp-content/uploads/tdc2.png')); ?>"
+										alt="<?php echo esc_attr(get_the_title()); ?>">
+
+								</a>
+
+
+								<h3 class="widget-test-4-item-title">
+
+									<a href="<?php the_permalink(); ?>">
+										<?php the_title(); ?>
+									</a>
+
+								</h3>
+
+
+								<div class="widget-test-4-item-meta">
+
+									<span>
+										<?php
+										echo esc_html(
+											get_the_date('d/m/Y')
+										);
+										?>
+									</span>
+
+								</div>
+
+							</article>
+
+							<?php if (3 === $index) : ?>
+
+							</div>
+
+						<?php endif; ?>
+
+
+					<?php endif; ?>
+
+
+					<?php $index++; ?>
+
+				<?php endwhile; ?>
+
+
+			<?php else : ?>
+
+				<p class="widget-test-4-empty">
+					Chưa có bài viết.
+				</p>
+
+			<?php endif; ?>
+
+
+			<?php wp_reset_postdata(); ?>
+
+		</section>
+
+	<?php
+	}
+
+
+	/**
+	 * =====================================================
+	 * ADMIN FORM
+	 * =====================================================
+	 */
+	public function form($instance)
+	{
+	?>
+
+		<p>
+			<strong>widget_test_4</strong>
+		</p>
+
+		<p>
+			Widget hiển thị:
+		</p>
+
+		<ul>
+			<li>1 bài viết nổi bật</li>
+			<li>3 bài viết phụ</li>
+			<li>Bài viết được chọn ngẫu nhiên</li>
+		</ul>
+
+<?php
+	}
+
+
+	/**
+	 * =====================================================
+	 * UPDATE
+	 * =====================================================
+	 */
+	public function update($new_instance, $old_instance)
+	{
+		return $old_instance;
+	}
+}
+
+
+/**
+ * =========================================================
+ * ĐĂNG KÝ WIDGET
+ * =========================================================
+ */
+/**
+ * =========================================================
+ * KIỂM TRA TRANG ĐƯỢC PHÉP HIỂN THỊ
+ * =========================================================
+ *
+ * Widget 4 được hiển thị tại:
+ *
+ * 1. Trang chủ
+ * 2. Trang danh sách
+ * 3. Trang chi tiết
+ *
+ * Bao gồm thêm trang tìm kiếm để phù hợp với
+ * cấu trúc WordPress.
+ */
+function cms_widget_test_4_should_display()
+{
+
+	/**
+	 * Trang chủ tĩnh
+	 */
+	if (is_front_page()) {
+		return true;
+	}
+
+	/**
+	 * Trang bài viết / Blog
+	 */
+	if (is_home()) {
+		return true;
+	}
+
+	/**
+	 * Trang danh sách:
+	 * - Category
+	 * - Tag
+	 * - Author
+	 * - Date
+	 * - Custom taxonomy archive
+	 */
+	if (is_archive()) {
+		return true;
+	}
+
+	/**
+	 * Trang tìm kiếm
+	 */
+	if (is_search()) {
+		return true;
+	}
+
+	/**
+	 * Trang chi tiết bài viết
+	 */
+	if (is_single()) {
+		return true;
+	}
+
+	/**
+	 * Các trang khác không hiển thị.
+	 */
+	return false;
+}
+
+
+/**
+ * =========================================================
+ * RENDER WIDGET TEST 4 TRƯỚC FOOTER
+ * =========================================================
+ */
+function cms_widget_test_4_render_before_footer()
+{
+
+	/**
+	 * Kiểm tra class có tồn tại hay không.
+	 */
+	if (!class_exists('CMS_Widget_Test_4')) {
+		return;
+	}
+
+
+	/**
+	 * Tạo instance của Widget.
+	 */
+	$widget = new CMS_Widget_Test_4();
+
+
+	/**
+	 * Render Widget trực tiếp.
+	 *
+	 * Không cần tạo Sidebar riêng.
+	 */
+	$widget->widget(
+		array(
+			'before_widget' => '<div class="cms-widget-test-4-wrapper">',
+			'after_widget'  => '</div>',
+			'before_title'  => '',
+			'after_title'   => '',
+		),
+		array()
+	);
+}
+require_once get_template_directory() . '/inc/widget-member-1.php';
+require_once get_template_directory() . '/inc/widget-member-2.php';
+require_once get_template_directory() . '/inc/widget-member-3.php';
+require_once get_template_directory() . '/inc/widget-member-4.php';
+require_once get_template_directory() . '/inc/widget-member-5.php';

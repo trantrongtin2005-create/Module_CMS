@@ -95,8 +95,8 @@ if ( empty( $dropdown_cats ) ) {
 }
 ?>
 
-<div class="widget-member-4">
-    <div id="member_4_widget_content" class="member-4-container">
+<div class="widget-member-2">
+    <div id="member_2_widget_content" class="member-4-container">
         <!-- Header Navigation (Right Aligned) -->
         <div class="member-4-header">
             <nav class="member-4-nav">

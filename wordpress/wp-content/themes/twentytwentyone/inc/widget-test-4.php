@@ -12,10 +12,10 @@ if ( ! class_exists( 'Widget_Test_4' ) ) {
 
 	class Widget_Test_4 extends WP_Widget {
 
-		public function __construct() {
+		public function __construct( $id_base = 'widget_test_4', $name = null ) {
 			parent::__construct(
-				'widget_test_4',
-				__( 'Widget Test 4', 'twentytwentyone' ),
+				$id_base,
+				$name ? $name : __( 'Widget Test 4', 'twentytwentyone' ),
 				array(
 					'classname'   => 'widget_test_4_box',
 					'description' => __( 'Widget hiển thị tin tức theo danh mục (Category) phong cách Thể thao / Doanh nghiệp phía trên Footer.', 'twentytwentyone' ),
@@ -254,22 +254,3 @@ if ( ! class_exists( 'Widget_Test_4' ) ) {
 	}
 }
 
-/**
- * Register Widget & Widget Area
- */
-function twentytwentyone_register_widget_test_4() {
-	register_widget( 'Widget_Test_4' );
-
-	register_sidebar(
-		array(
-			'name'          => esc_html__( 'Widget Test 4 Area (Above Footer)', 'twentytwentyone' ),
-			'id'            => 'widget-test-4-sidebar',
-			'description'   => esc_html__( 'Khu vực hiển thị widget_test_4 nằm ngay phía trên Footer.', 'twentytwentyone' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
-}
-add_action( 'widgets_init', 'twentytwentyone_register_widget_test_4' );
