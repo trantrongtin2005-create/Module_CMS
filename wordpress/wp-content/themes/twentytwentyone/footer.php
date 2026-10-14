@@ -32,7 +32,7 @@
 			<div class="footer-col">
 
 				<h4>
-					<?php esc_html_e( 'Quick links', 'twentytwentyone' ); ?>
+					<?php echo esc_html( get_footer_col_title( 1, __( 'Quick links', 'twentytwentyone' ) ) ); ?>
 				</h4>
 
 				<?php
@@ -94,7 +94,7 @@
 			<div class="footer-col">
 
 				<h4>
-					<?php esc_html_e( 'Quick links', 'twentytwentyone' ); ?>
+					<?php echo esc_html( get_footer_col_title( 2, __( 'Quick links', 'twentytwentyone' ) ) ); ?>
 				</h4>
 
 				<?php
@@ -156,7 +156,7 @@
 			<div class="footer-col">
 
 				<h4>
-					<?php esc_html_e( 'Quick links', 'twentytwentyone' ); ?>
+					<?php echo esc_html( get_footer_col_title( 3, __( 'Quick links', 'twentytwentyone' ) ) ); ?>
 				</h4>
 
 				<?php

@@ -36,6 +36,18 @@ if ( $is_home_page || $is_list_page || $is_detail_page ) : ?>
 			}
 		}
 
+		// Widget Video Tin Tức - Văn Cảnh (Phục hồi từ vanCanh_Cms/_widget_4)
+		if ( class_exists( 'VanCanh_Widget_Video_4' ) ) {
+			the_widget(
+				'VanCanh_Widget_Video_4',
+				array(),
+				array(
+					'before_widget' => '<div class="footer-member-widget footer-vancanh-video-widget">',
+					'after_widget'  => '</div>',
+				)
+			);
+		}
+
 		if ( is_active_sidebar( 'sidebar-1' ) ) {
 			dynamic_sidebar( 'sidebar-1' );
 		}

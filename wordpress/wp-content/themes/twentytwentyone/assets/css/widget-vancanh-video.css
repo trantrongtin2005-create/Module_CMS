@@ -1,0 +1,249 @@
+/**
+ * ============================================================
+ * WIDGET VIDEO TIN TỨC - VĂN CẢNH (Phục hồi từ vanCanh_Cms/_widget_4)
+ * Hiển thị danh sách video / tin tức thể thao ngẫu nhiên (scrollable card)
+ * Vị trí: Phía trên Footer (Trang chủ, Trang danh sách, Trang chi tiết)
+ * ============================================================
+ */
+
+/* Vùng hiển thị widget phía trên Footer */
+.footer-vancanh-video-area,
+.footer-widget-test-4-area,
+aside.widget-area.footer-widget-test-4-area {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 40px auto 30px !important;
+    padding: 0 20px !important;
+    box-sizing: border-box !important;
+    clear: both !important;
+}
+
+/* Cho phép hiển thị widget trong widget-area */
+.footer-widget-test-4-area .widget,
+.widget-area .widget_vancanh_widget_video_4,
+.widget_vancanh_widget_video_4,
+.widget-area .widget_widget_test_4,
+.widget_widget_test_4 {
+    display: block !important;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 440px;
+}
+
+/* Card bao quanh widget */
+.vancanh-video-card,
+.widget-test-4-card {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 4px !important;
+    padding: 16px 18px 16px 20px !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+    max-width: 440px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+}
+
+/* Tiêu đề chính của widget nếu có */
+.widget_vancanh_widget_video_4 .widget-title,
+.widget_widget_test_4 .widget-title,
+.vancanh-video-main-title,
+.widget-test-4-main-title {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #1e293b !important;
+    margin: 0 0 12px !important;
+    padding-bottom: 8px !important;
+    border-bottom: 2px solid #e2e8f0 !important;
+    font-family: Arial, sans-serif !important;
+}
+
+/* Khung cuộn danh sách có scrollbar thanh mảnh bên phải */
+.vancanh-video-scrollable,
+.widget-test-4-scrollable {
+    max-height: 470px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding-right: 6px !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: #bcbcbc transparent !important;
+}
+
+/* Tùy chỉnh thanh cuộn Webkit */
+.vancanh-video-scrollable::-webkit-scrollbar,
+.widget-test-4-scrollable::-webkit-scrollbar {
+    width: 4px !important;
+}
+
+.vancanh-video-scrollable::-webkit-scrollbar-track,
+.widget-test-4-scrollable::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+.vancanh-video-scrollable::-webkit-scrollbar-thumb,
+.widget-test-4-scrollable::-webkit-scrollbar-thumb {
+    background: #bcbcbc !important;
+    border-radius: 4px !important;
+}
+
+.vancanh-video-scrollable::-webkit-scrollbar-thumb:hover,
+.widget-test-4-scrollable::-webkit-scrollbar-thumb:hover {
+    background: #999999 !important;
+}
+
+/* Từng dòng bài viết / video item */
+.vancanh-video-item,
+.widget-test-4-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+    padding: 12px 0 !important;
+    border-bottom: 1px solid #ededed !important;
+    text-decoration: none !important;
+    color: inherit !important;
+    transition: background-color 0.2s ease, opacity 0.2s ease !important;
+    box-sizing: border-box !important;
+}
+
+.vancanh-video-item:first-child,
+.widget-test-4-item:first-child {
+    padding-top: 4px !important;
+}
+
+.vancanh-video-item:last-child,
+.widget-test-4-item:last-child {
+    border-bottom: none !important;
+}
+
+.vancanh-video-item:hover,
+.widget-test-4-item:hover {
+    opacity: 0.85 !important;
+}
+
+/* Khung hình thumbnail bên trái */
+.vancanh-video-thumb-wrapper,
+.widget-test-4-thumb-wrapper {
+    position: relative !important;
+    flex: 0 0 130px !important;
+    width: 130px !important;
+    height: 74px !important;
+    border-radius: 2px !important;
+    overflow: hidden !important;
+    background-color: #1a1a1a !important;
+}
+
+/* Hình ảnh thumbnail */
+.vancanh-video-img,
+.vancanh-video-thumb-wrapper img,
+.widget-test-4-img,
+.widget-test-4-thumb-wrapper img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: cover !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    transition: transform 0.3s ease !important;
+}
+
+.vancanh-video-item:hover .vancanh-video-img,
+.widget-test-4-item:hover .widget-test-4-img {
+    transform: scale(1.05) !important;
+}
+
+/* Badge "Đang phát" (Live) ở giữa ảnh */
+.vancanh-video-badge-live,
+.widget-test-4-badge-live {
+    position: absolute !important;
+    inset: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: rgba(0, 0, 0, 0.45) !important;
+    color: #ffffff !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    letter-spacing: 0.3px !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9) !important;
+    pointer-events: none !important;
+}
+
+/* Badge thời lượng video ("01:19", "03:14", ...) góc dưới bên trái */
+.vancanh-video-badge-time,
+.widget-test-4-badge-time {
+    position: absolute !important;
+    bottom: 6px !important;
+    left: 6px !important;
+    background-color: rgba(0, 0, 0, 0.85) !important;
+    color: #ffffff !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    padding: 3px 5px !important;
+    border-radius: 2px !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    letter-spacing: 0.5px !important;
+    pointer-events: none !important;
+}
+
+/* Khung tiêu đề bài viết bên phải */
+.vancanh-video-title-wrapper,
+.widget-test-4-title-wrapper {
+    flex: 1 !important;
+    min-width: 0 !important;
+}
+
+/* Tiêu đề bài viết font có chân (Serif) theo chuẩn thiết kế */
+.vancanh-video-item-title,
+.widget-test-4-item-title {
+    font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+    color: #1a1a1a !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    word-break: break-word !important;
+    transition: color 0.2s ease !important;
+}
+
+.vancanh-video-item:hover .vancanh-video-item-title,
+.widget-test-4-item:hover .widget-test-4-item-title {
+    color: #0056b3 !important;
+}
+
+/* Thông báo khi không có bài */
+.vancanh-video-empty,
+.widget-test-4-empty {
+    font-size: 14px !important;
+    color: #64748b !important;
+    margin: 10px 0 !important;
+    text-align: center !important;
+}
+
+/* Responsive trên mobile */
+@media (max-width: 480px) {
+    .vancanh-video-card,
+    .widget-test-4-card {
+        padding: 12px 14px !important;
+    }
+    
+    .vancanh-video-thumb-wrapper,
+    .widget-test-4-thumb-wrapper {
+        flex: 0 0 100px !important;
+        width: 100px !important;
+        height: 60px !important;
+    }
+    
+    .vancanh-video-item-title,
+    .widget-test-4-item-title {
+        font-size: 14px !important;
+    }
+}

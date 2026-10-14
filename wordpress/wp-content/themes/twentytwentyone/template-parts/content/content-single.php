@@ -19,23 +19,13 @@
 			<!-- Tiêu đề bài viết -->
 			<?php the_title( '<h1 class="module6-title">', '</h1>' ); ?>
 
-			<!-- Nhóm badge ngày + nút 3 chấm -->
+			<!-- Date badge vàng tròn: ngày / tháng / năm -->
 			<div class="module6-badge-group">
-
-				<!-- Date badge vàng tròn: ngày / tháng / năm -->
 				<div class="module6-date-badge" title="<?php echo esc_attr( get_the_date( 'd/m/Y' ) ); ?>">
 					<span class="badge-day"><?php echo esc_html( get_the_date( 'd' ) ); ?></span>
 					<span class="badge-month"><?php echo esc_html( get_the_date( 'm' ) ); ?></span>
 					<span class="badge-year"><?php echo esc_html( get_the_date( 'y' ) ); ?></span>
 				</div>
-
-				<!-- Nút 3 chấm dọc ⋮ -->
-				<button class="module6-more-btn" type="button" aria-label="More options">
-					<span></span>
-					<span></span>
-					<span></span>
-				</button>
-
 			</div>
 
 		</div><!-- .module6-card-header -->
