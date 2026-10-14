@@ -166,12 +166,62 @@
     text-decoration: none;
     white-space: nowrap;
     padding: 6px 4px;
+    background: transparent !important;
+    background-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
     transition: color 0.2s ease;
 }
 
-#module-header .header-nav-links .nav-list li a:hover {
-    color: #007bff;
-    text-decoration: none;
+#module-header .header-nav-links .nav-list li a:hover,
+#module-header .header-nav-links .nav-list li a:focus,
+#module-header .header-nav-links .nav-list li a:active,
+#module-header .header-nav-links .nav-list li a:focus-visible,
+#module-header .header-nav-links .nav-list li.current-menu-item > a,
+#module-header .header-nav-links .nav-list li.current_page_item > a,
+#module-header .header-nav-links .nav-list li.current-cat > a {
+    color: #007bff !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+}
+
+/* Triệt tiêu hoàn toàn nền đen của theme Twenty Twenty-One khi click / focus / active trên Header */
+.site #module-header a:focus,
+.site #module-header a:active,
+.site #module-header a:focus-visible,
+.site #module-header button:focus,
+.site #module-header button:active,
+.site #module-header button:focus-visible,
+#module-header a:focus,
+#module-header a:active,
+#module-header a:focus-visible,
+#module-header button:focus,
+#module-header button:active,
+#module-header button:focus-visible {
+    background: transparent !important;
+    background-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+}
+
+#module-header .header-home-btn:focus,
+#module-header .header-home-btn:active {
+    background-color: #dee2e6 !important;
+    color: #212529 !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+#module-header .header-brand:focus,
+#module-header .header-brand:active {
+    color: #333333 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    outline: none !important;
 }
 
 /* Các nút Action (Menu, Search, Account): bố cục icon trên, chữ dưới */
@@ -206,9 +256,17 @@
 }
 
 #module-header .btn-action-icon:hover,
+#module-header .btn-action-icon:focus,
+#module-header .btn-action-icon:active,
 #module-header .btn-action-icon:hover span,
-#module-header .btn-action-icon:hover i {
-    color: #007bff;
+#module-header .btn-action-icon:focus span,
+#module-header .btn-action-icon:active span,
+#module-header .btn-action-icon:hover i,
+#module-header .btn-action-icon:focus i,
+#module-header .btn-action-icon:active i {
+    color: #007bff !important;
+    background: transparent !important;
+    background-color: transparent !important;
 }
 
 /* Riêng nút Account */

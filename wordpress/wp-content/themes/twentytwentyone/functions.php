@@ -1046,3 +1046,7 @@ require_once get_template_directory() . '/inc/widget-member-2.php';
 require_once get_template_directory() . '/inc/widget-member-3.php';
 require_once get_template_directory() . '/inc/widget-member-4.php';
 require_once get_template_directory() . '/inc/widget-member-5.php';
+require_once get_template_directory() . '/inc/widget-vancanh-video.php';
+require_once get_template_directory() . '/inc/footer-quicklinks.php';
+
+
